@@ -1,7 +1,7 @@
 Package.describe({
     name: 'teachmefly:reaction-static-pages',
     summary: 'Static pages for reactioncommerce',
-    version: '0.0.3',
+    version: '0.0.4',
     git: 'https://github.com/TeachMeFly/reaction-static-pages.git'
 });
 
@@ -9,7 +9,7 @@ Package.onUse(function(api, where) {
     api.versionsFrom('1.0');
     // Reaction Core
     api.use([
-        'reactioncommerce:core@0.1.7',
+        'reactioncommerce:core@0.2.0',
         'templating',
         'coffeescript',
         'meteor-platform',
