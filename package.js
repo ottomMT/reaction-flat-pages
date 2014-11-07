@@ -1,7 +1,7 @@
 Package.describe({
     name: 'teachmefly:reaction-static-pages',
     summary: 'Static pages for reactioncommerce',
-    version: '0.0.4',
+    version: '0.0.5',
     git: 'https://github.com/TeachMeFly/reaction-static-pages.git'
 });
 
