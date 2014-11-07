@@ -1,0 +1,16 @@
+<template name="coreStaticPageLayout">
+    <nav class="reaction-navigation-header">{{> yield region="layoutHeader"}}</nav>
+    <nav class="reaction-cart-drawer">{{>cartDrawer}}</nav>
+    <div class="reaction-dashboard-drawer">{{> yield region="dashboard"}}</div>
+    <main role="main" id="main">
+        <div class="container">
+            <div class="sidebar col-md-3">
+                <nav>{{> sidebar}}</nav>
+            </div>
+            <div class="col-md-8 col-md-offset-1">
+                {{> yield}}
+            </div>
+        </div>
+    </main>
+    <footer class="reaction-navigation-footer">{{>yield region="layoutFooter"}}</footer>
+</template>

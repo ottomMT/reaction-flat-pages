@@ -1,0 +1,15 @@
+<template name="staticPagesConfig">
+    <div class="row">
+        <h2>Reaction SingePage<small> Settings</small></h2>
+    </div>
+    <h1>Insert</h1>
+    <div class="row">
+        {{> quickForm collection="ReactionCore.Collections.Page" id="insertBookForm" type="insert"}}
+    </div>
+    <h1>Update</h1>
+    {{#each pagesList}}
+    <div class="row">
+        {{> quickForm collection="ReactionCore.Collections.Page" doc=this id=_id type="update"}}
+    </div>
+    {{/each}}
+</template>
