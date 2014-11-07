@@ -1,3 +1,3 @@
 Installation:
 =======================
-  meteor add teachmefly:reaction-static-pages
+    meteor add teachmefly:reaction-static-pages
