@@ -1,15 +1,15 @@
 Package.describe({
-    name: 'reaction-static-pages',
+    name: 'teachmefly:reaction-static-pages',
     summary: 'Static pages for reactioncommerce',
-    version: '0.0.1',
-    //git: ' /* Fill me in! */ '
+    version: '0.0.3',
+    git: 'git@github.com:TeachMeFly/reaction-static-pages.git'
 });
 
 Package.onUse(function(api, where) {
     api.versionsFrom('1.0');
     // Reaction Core
     api.use([
-        'reactioncommerce:core',
+        'reactioncommerce:core@0.1.7',
         'templating',
         'coffeescript',
         'meteor-platform',
@@ -20,8 +20,8 @@ Package.onUse(function(api, where) {
         'jquery',
         'underscore',
         'blaze',
-        'iron:router',
-        'aldeed:autoform',
+        'iron:router@0.9.4',
+        'aldeed:autoform@3.2.0',
     ], 'client');
 
     api.addFiles([
