@@ -4,7 +4,7 @@
     onBeforeAction: 'loading'
     onAfterAction: ->
         ReactionCore.MetaData.clear(@route, @params)
-        ReactionCore.MetaData.title = @data().pageTitle
+        ReactionCore.MetaData.title = @params.title
         ReactionCore.MetaData.render(@route, @params)
     layoutTemplate: "coreLayout"
     yieldTemplates:
