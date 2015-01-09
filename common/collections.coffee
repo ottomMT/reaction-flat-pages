@@ -1,6 +1,5 @@
 #share.Page = @Page = new Meteor.Collection("Page")
-
-ReactionStaticPage.Schemas.Page = new SimpleSchema
+ReactionCore.Schemas.Page = new SimpleSchema
 #    _id:
 #        type: String
 #        optional: true
@@ -23,5 +22,5 @@ ReactionStaticPage.Schemas.Page = new SimpleSchema
             rows: 30
         }
 
-ReactionStaticPage.Collections.Page = Page = @Page = new Meteor.Collection "Page"
-ReactionStaticPage.Collections.Page.attachSchema ReactionStaticPage.Schemas.Page
+ReactionCore.Collections.Page = Page = @Page = new Meteor.Collection "Page"
+ReactionCore.Collections.Page.attachSchema ReactionCore.Schemas.Page

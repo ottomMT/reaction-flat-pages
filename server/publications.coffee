@@ -1,4 +1,4 @@
-Page = ReactionStaticPage.Collections.Page
+Page = ReactionCore.Collections.Page
 
 Meteor.publish 'pagesList', ->
     return Page.find({}, {fields: {route: 1, title: 1, position: 1}})

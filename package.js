@@ -9,7 +9,7 @@ Package.onUse(function(api, where) {
     api.versionsFrom('1.0');
     // Reaction Core
     api.use([
-        'reactioncommerce:core@0.2.0',
+        'reactioncommerce:core@0.2.1',
         'templating',
         'coffeescript',
         'meteor-platform',
