@@ -10,7 +10,3 @@ Template.staticPagesConfig.events
                 console.log page
                 #Router.go "page",
                 #   _id: productId
-
-Template.staticPagesConfig.helpers
-    pagesList: ->
-        Page.find()

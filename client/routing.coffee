@@ -2,7 +2,11 @@
     waitOn: ->
         @subscribe "pagesList"
     onBeforeAction: 'loading'
-    layoutTemplate: "coreStaticPageLayout"
+    onAfterAction: ->
+        ReactionCore.MetaData.clear(@route, @params)
+        ReactionCore.MetaData.title = @data().pageTitle
+        ReactionCore.MetaData.render(@route, @params)
+    layoutTemplate: "coreLayout"
     yieldTemplates:
         layoutHeader:
             to: "layoutHeader"
@@ -15,15 +19,9 @@ StaticPageController = @StaticPageController
 Router.map ->
     @route 'page',
         controller: StaticPageController
-        path: '/:route'
+        path: 'page/:route'
         template: 'singlePage'
-        data: ->
-            page = Page.findOne({'route' : @params.route})
-            return page
-
-    @route 'staticpages',
-        controller: ShopAdminController
-        path: 'dashboard/settings/staticpages',
-        template: 'staticPagesConfig'
         waitOn: ->
-            return ReactionCore.Subscriptions.Packages
+            @subscribe "singlePage", @params.route
+        data: ->
+            return Page.findOne({'route' : @params.route})
