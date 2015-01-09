@@ -20,11 +20,9 @@ Package.onUse(function(api, where) {
         'jquery',
         'underscore',
         'blaze',
-        //'iron:router@0.9.4',
         'aldeed:autoform@4.0.7',
-
-        //'bootstrap',
         'jimmiebtlr:bootstrap-wysihtml5',
+		
     ], 'client');
 
     api.addFiles([
@@ -52,8 +50,6 @@ Package.onUse(function(api, where) {
 
     api.export([
         "ReactionStaticPage",
-
         "StaticPageController",
-        //"ReactionCore",
     ]);
 });
