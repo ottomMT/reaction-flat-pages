@@ -27,7 +27,6 @@ Package.onUse(function(api, where) {
 
     api.addFiles([
         'common/register.coffee',
-        'common/globals.js',
         'common/collections.coffee',
     ]);
 
