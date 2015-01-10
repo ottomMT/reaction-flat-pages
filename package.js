@@ -35,8 +35,6 @@ Package.onUse(function(api, where) {
         'client/routing.coffee',
         'client/subscriptions.coffee',
 
-        'client/templates/coreStaticPageLayout/coreStaticPageLayout.html',
-        'client/templates/coreStaticPageLayout/coreStaticPageLayout.coffee',
         'client/templates/singlePage/singlePage.html',
         'client/templates/singlePage/singlePage.coffee',
 

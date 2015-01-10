@@ -1,3 +1,7 @@
+###
+#Refactor
+###
+#
 Template.staticPagesConfig.events
     "click #add-page-link": (event, template) ->
         event.preventDefault()

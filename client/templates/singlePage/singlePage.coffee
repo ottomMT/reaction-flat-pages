@@ -1,6 +1,5 @@
 Template.singlePage.helpers
     contentComponent: ->
-        console.log ReactionCore.hasOwnerAccess()
         if (_.isEmpty @) and ReactionCore.hasOwnerAccess()
             return Template.singlePageCreate
 
@@ -11,10 +10,6 @@ Template.singlePage.helpers
             return Template.singlePageEdit
         else
             return Template.singlePageShow
-
-Template.singlePageShow.helpers
-  	'isContact': () ->
-  		return Router.current().path == "/page/contactus"
 
 Template.singlePageShow.events
     'click #showingPage': (event, template) ->
