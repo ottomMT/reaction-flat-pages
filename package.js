@@ -1,18 +1,18 @@
 Package.describe({
     name: 'teachmefly:reaction-static-pages',
     summary: 'Static pages for reactioncommerce',
-    version: '0.0.6',
-    git: 'https://github.com/TeachMeFly/reaction-static-pages.git'
+    version: '0.0.6'
+//    git: 'https://github.com/TeachMeFly/reaction-static-pages.git'
 });
 
 Package.onUse(function(api, where) {
     api.versionsFrom('1.0');
     // Reaction Core
     api.use([
-        'reactioncommerce:core@0.2.1',
-        'templating',
-        'coffeescript',
-        'meteor-platform',
+	'meteor-platform',
+	'coffeescript',
+	'templating',
+	'reactioncommerce:core',
     ], ['server', 'client']);
 
     api.use([
@@ -20,19 +20,17 @@ Package.onUse(function(api, where) {
         'jquery',
         'underscore',
         'blaze',
-        'aldeed:autoform@4.0.7',
+        'aldeed:autoform',
         'jimmiebtlr:bootstrap-wysihtml5',
-		
     ], 'client');
 
     api.addFiles([
-        'common/register.coffee',
         'common/collections.coffee',
+        'common/routing.coffee',
     ]);
 
     api.addFiles([
         'client/app.coffee',
-        'client/routing.coffee',
         'client/subscriptions.coffee',
 
         'client/templates/singlePage/singlePage.html',
@@ -41,6 +39,7 @@ Package.onUse(function(api, where) {
     ], 'client');
 
     api.addFiles([
+        'server/register.coffee',
         'server/methods/pages.coffee',
         'server/publications.coffee',
     ], 'server');
