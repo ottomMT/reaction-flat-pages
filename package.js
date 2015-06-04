@@ -1,8 +1,8 @@
 Package.describe({
     name: 'teachmefly:reaction-static-pages',
     summary: 'Static pages for reactioncommerce',
-    version: '0.0.6'
-//    git: 'https://github.com/TeachMeFly/reaction-static-pages.git'
+    version: '0.0.6',
+//    git: 'https://github.com/dukeondope/reaction-static-pages.git'
 });
 
 Package.onUse(function(api, where) {
@@ -35,6 +35,9 @@ Package.onUse(function(api, where) {
 
         'client/templates/singlePage/singlePage.html',
         'client/templates/singlePage/singlePage.coffee',
+
+        'client/templates/staticPagesConfig/staticPagesConfig.html',
+        'client/templates/staticPagesConfig/staticPagesConfig.coffee',
 
     ], 'client');
 

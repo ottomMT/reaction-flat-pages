@@ -25,3 +25,12 @@ Router.map ->
             @subscribe "singlePage", @params.route
         data: ->
             return Page.findOne({'route' : @params.route})
+
+    @route 'static-pages',
+        controller: ShopAdminController
+        path: 'dashboard/settings/static-pages'
+        template: "staticPagesConfig"
+        waitOn: ->
+            @subscribe "products"
+            @subscribe "tags"
+            return ReactionCore.Subscriptions.Packages
