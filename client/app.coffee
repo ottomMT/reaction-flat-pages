@@ -1,2 +1,2 @@
 _.extend ReactionCore, existingPages: ->
-  returnPage.find { }, { sort: { position: 1 } }
+  return Page.find { }, { sort: { position: 1 } }
