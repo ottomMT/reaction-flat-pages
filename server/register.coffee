@@ -12,7 +12,7 @@ ReactionCore.registerPackage
       provides: 'dashboard'
       label: 'Static Pages'
       description: "Easily add static pages anywhere into Reaction Commerce"
-      icon: 'fa fa-text' # glyphicon/fa
+      icon: 'fa fa-file-text-o' # glyphicon/fa
       cycle: '3' # Core, Stable, Testing (currently testing)
       container: 'dashboard'  #group this with settings
     }
