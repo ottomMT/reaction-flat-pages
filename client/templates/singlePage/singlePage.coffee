@@ -2,10 +2,8 @@ Template.singlePage.helpers
     contentComponent: ->
         if (_.isEmpty @) and ReactionCore.hasOwnerAccess()
             return Template.singlePageCreate
-
         if (_.isEmpty @) and !ReactionCore.hasOwnerAccess()
-            return
-            
+            return Template.notFound
         if ReactionCore.hasOwnerAccess() and Session.get "editCurrentPage"
             return Template.singlePageEdit
         else
@@ -53,8 +51,7 @@ Template.singlePageCreate.events
         Meteor.call "createPage", Router.current().params.route, (error, response) ->
             unless error
                 return
-            console.log response
-            #Session.set "editCurrentPage", true
+            Session.set "editCurrentPage", true
 
 
 Template.singlePageEdit.helpers
