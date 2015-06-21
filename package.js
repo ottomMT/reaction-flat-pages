@@ -1,5 +1,5 @@
 Package.describe({
-    name: 'teachmefly:reaction-static-pages',
+    name: 'dukeondope:reaction-static-pages',
     summary: 'Static pages for reactioncommerce',
     version: '0.0.6',
 //    git: 'https://github.com/dukeondope/reaction-static-pages.git'

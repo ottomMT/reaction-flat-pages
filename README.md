@@ -1,10 +1,10 @@
 
-Installation: 
+Installation:
 =============
 Copy to packages folder (prefered) or
-    
+
 ```
-meteor add teachmefly:reaction-static-pages
+meteor add dukeondope:reaction-static-pages
 ```
 
 .html
