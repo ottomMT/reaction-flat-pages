@@ -17,11 +17,11 @@ Package.onUse(function(api, where) {
 
     api.use([
         'less',
-        'jquery',
-        'underscore',
+        //'jquery',
+        //'underscore',
         'blaze',
         'aldeed:autoform',
-        'jimmiebtlr:bootstrap-wysihtml5',
+        //'jimmiebtlr:bootstrap-wysihtml5',
     ], 'client');
 
     api.addFiles([
