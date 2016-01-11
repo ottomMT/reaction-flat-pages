@@ -1,0 +1,20 @@
+[{
+  "language": "Russian",
+  "i18n": "ru",
+  "translation": {
+    "flat-pages": {
+      "pageDetail": {
+        "pageManagement": "Управление страницей",
+        "makeInvisible": "Сделать невидимой",
+        "isNotVisible": "Эта страница невидима для покупателей.",
+        "makeItVisible": "Вы можете сделать его видимым",
+        "whenYouAreDone": "когда закончите редактирование."
+      },
+      "pageDetailEdit": {
+        "title": "Название",
+        "pageTitle": "Другое название",
+        "content": "Добавьте содержимое страницы"
+      }
+    }
+  }
+}]
