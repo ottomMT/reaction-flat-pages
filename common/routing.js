@@ -26,10 +26,26 @@ let FlatPageController = RouteController.extend({
 this.FlatPageController = FlatPageController;
 
 /*
- * General Route Declarations
+ * Page Route Declarations
  */
 
 Router.map(function () {
+
+  this.route("createPage", {
+    path: "page/add",
+    data: function () {
+      Meteor.call("pages/createPage", (error, pageId) => {
+        if (error) {
+          throw new Meteor.Error("createPage error", error);
+        } else if (pageId) {
+          Router.go("page", {
+            _id: pageId
+          });
+        }
+      });
+    }
+  });
+
   this.route("page", {
     controller: FlatPageController,
     path: "page/:_id",
@@ -50,22 +66,15 @@ Router.map(function () {
             this.render("unauthorized");
           }
         }
+        if (page._id === page.handle) {
+          page.handle = "";
+        }
         return page;
       }
       if (this.ready() && !page) {
-        return this.render("notFound");
+        return this.render("pageNotFound");
       }
     }
-  })
+  });
 
-  //this.route("flat-pages", {
-  //  controller: ShopAdminController,
-  //  path: "dashboard/settings/flat-pages",
-  //  template: "flatPagesConfig",
-  //  waitOn: function() {
-  //    this.subscribe("products");
-  //    this.subscribe("tags");
-  //    return ReactionCore.Subscriptions.Packages;
-  //  }
-  //});
 });

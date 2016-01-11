@@ -10,7 +10,7 @@ Meteor.methods({
    * @param {Object} page - optional page object
    * @return {String} return insert result
    */
-  "page/createPage": function (page) {
+  "pages/createPage": function (page) {
     check(page, Match.Optional(Object));
     // must have createPage permission
     if (!ReactionCore.hasPermission("createPage")) {

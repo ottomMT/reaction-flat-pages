@@ -22,8 +22,16 @@ Template.pageDetailEdit.events({
   "change input,textarea": function (event) {
     const self = this;
     const pageId = selectedPageId();
-    Meteor.call("pages/updatePageField", pageId, this.field,
-      $(event.currentTarget).val(),
+    const value = $(event.currentTarget).val();
+
+    if (this.field === 'handle' && value === 'create') {
+      return Alerts.add(i18n.t("pageDetailEdit.handleReservedError"), "danger", {
+        placement: "pageManagement",
+        id: this._id
+      });
+    }
+
+    Meteor.call("pages/updatePageField", pageId, this.field, value,
       function (error) {
         if (error) {
           return Alerts.add(error.reason, "danger", {
@@ -35,7 +43,7 @@ Template.pageDetailEdit.events({
         //
         if (self.field === 'handle') {
           return Router.go("page", {
-            _id: $(event.currentTarget).val()
+            _id: value
           });
         }
         // animate updated field

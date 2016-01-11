@@ -33,7 +33,6 @@ ReactionCore.Schemas.Page = new SimpleSchema({
   },
   handle: {
     type: String,
-    optional: true,
     index: 1,
     autoValue: function () {
       let slug = this.value ||  getSlug(this.siblingField("title").value) || this.siblingField("_id").value || "";

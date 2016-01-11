@@ -5,7 +5,7 @@
 ReactionCore.registerPackage({
   label: "Flat Pages",
   name: "flat-pages",
-  autoEnable: false,
+  autoEnable: true,
   settings: {
     url: ""
   },
