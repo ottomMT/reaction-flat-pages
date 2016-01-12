@@ -26,31 +26,20 @@
               <div class="row">
                   <span id="page-management-alerts">{{>bootstrapAlerts placement="pageManagement"}}</span>
               </div>
-              <div class="row"><h3>{{>fieldComponent field="handle" value=handle}}</h3></div>
+              <div class="row title-edit">
+                  <h3>{{>fieldComponent field="handle" value=handle}}</h3>
+              </div>
           {{/if}}
           {{!-- END Page Visibility Admin Block --}}
-            <!-- Page Detail Page -->
             <div class="row">
-                <!-- Titles -->
-                <div class="row">
-                    <div class="title">
-                        <h1 id="title">{{>fieldComponent field="title" value=title}}</h1>
-                    </div>
-                    <div class="pageTitle">
-                        <h2 id="pageTitle">{{>fieldComponent field="pageTitle" value=pageTitle}}</h2>
-                    </div>
+                <div class="title">
+                    <h1 id="title">{{>fieldComponent field="title" value=title}}</h1>
                 </div>
-                <!-- Page Details -->
-                <div class="row">
-                    <!-- BEGIN Right Side -->
-                    <div>
-                        <div class="row col-md-11">
-                          {{!-- Description --}}
-                            <div class="row">
-                              {{>fieldComponent field="content" value=content type="textarea"}}
-                            </div>
-                        </div>
-                    </div>
+                <div class="pageTitle">
+                    <h2 id="pageTitle">{{>fieldComponent field="pageTitle" value=pageTitle}}</h2>
+                </div>
+                <div class="content">
+                  {{>fieldComponent field="content" value=content type="textarea"}}
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ Template.pageDetailEdit.helpers({
  */
 
 Template.pageDetailEdit.events({
-  "change input,textarea": function (event) {
+  "change input,textarea, blur textarea, tbwblur, tbwchange": function (event) {
     const self = this;
     const pageId = selectedPageId();
     const value = $(event.currentTarget).val();
@@ -29,6 +29,14 @@ Template.pageDetailEdit.events({
         placement: "pageManagement",
         id: this._id
       });
+    } else if (this.field === 'content' && event.type.indexOf('change') != -1) {
+      // save every 5 sec during content changing in textarea field
+      let key = `editing-${this.field}-savetime`;
+      let microsecs = Number(new Date());
+      if (microsecs - Session.get(key) < 5000) {
+        return
+      }
+      Session.set(key, microsecs);
     }
 
     Meteor.call("pages/updatePageField", pageId, this.field, value,
@@ -54,9 +62,9 @@ Template.pageDetailEdit.events({
         });
       });
 
-    if (this.type === "textarea") {
-      autosize($(event.currentTarget));
-    }
+    //if (this.type === "textarea") {
+    //  autosize($(event.currentTarget));
+    //}
 
     return Session.set("editing-" + this.field, false);
   }

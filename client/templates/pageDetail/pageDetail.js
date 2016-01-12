@@ -7,7 +7,7 @@ Template.pageDetail.helpers({
       return Template.pageDetailEdit;
     }
     return Template.pageDetailField;
-  },
+  }
 });
 
 /**
@@ -46,4 +46,18 @@ Template.pageDetail.events({
   "click .delete-page-link": function () {
     maybeDeletePage(this);
   }
+});
+
+Template.pageDetail.onRendered(function () {
+  this.autorun((function (_this) {
+    return function () {
+      $('.content-edit-input').trumbowyg({
+        removeformatPasted: true,
+        autogrow: true,
+        lang: Session.get("language")
+      });
+      // TODO: move to CSS changing default width
+      $('.trumbowyg-box').width('100%');
+    };
+  })(this));
 });

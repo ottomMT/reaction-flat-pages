@@ -7,17 +7,16 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.2");
-  // Reaction Core
-  api.use("reactioncommerce:core");
-  api.use("meteor-platform");
-  api.use("templating");
 
-  api.use("less@2.5.1", "client");
-  //api.use("jquery", "client");
-  //api.use("underscore", "client");
-  api.use("blaze", "client");
-  api.use("aldeed:autoform", "client");
-  //api.use("jimmiebtlr:bootstrap-wysihtml5", "client");
+  api.use("reactioncommerce:core@0.10.2");
+  api.use("meteor-platform");
+  api.use("mquandalle:bower@1.5.2_1");
+
+  api.addFiles("lib/bower.json", "client");
+  api.addFiles("lib/bower/trumbowyg/dist/trumbowyg.js", "client");
+  api.addFiles("lib/bower/trumbowyg/dist/ui/trumbowyg.min.css", "client");
+  api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black-2x.png", "client");
+  api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
   api.addFiles("common/collections.js");
   api.addFiles("common/routing.js");
@@ -32,8 +31,8 @@ Package.onUse(function (api) {
   api.addFiles("client/templates/pageDetail/pageDetail.js", "client");
   api.addFiles("client/templates/pageDetail/edit/edit.html", "client");
   api.addFiles("client/templates/pageDetail/edit/edit.js", "client");
-  //api.addFiles("client/templates/staticPagesConfig/staticPagesConfig.html", "client");
-  //api.addFiles("client/templates/staticPagesConfig/staticPagesConfig.coffee", "client");
+  api.addFiles("client/templates/flatPagesSettings/flatPagesSettings.html", "client");
+  api.addFiles("client/templates/flatPagesSettings/flatPagesSettings.js", "client");
 
   api.addFiles("server/register.js", "server");
   api.addFiles("server/methods/pages.js", "server");

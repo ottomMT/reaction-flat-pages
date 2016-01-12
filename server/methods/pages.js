@@ -87,6 +87,7 @@ Meteor.methods({
     let stringValue = EJSON.stringify(value);
     let update = EJSON.parse("{\"" + field + "\":" + stringValue + "}");
 
+    ReactionCore.Log.info(`Change page ${pageId} field ${field} = "${value}"`);
     return ReactionCore.Collections.Pages.update(pageId, {
       $set: update
     });
@@ -110,8 +111,7 @@ Meteor.methods({
 
     if ((page !== null ? page.title : void 0) && (page !== null ? page.content : void 0)) {
       // update page visibility
-      ReactionCore.Log.info("toggle page visibility ", page._id, !page.isVisible);
-
+      ReactionCore.Log.info(`Toggle page ${pageId} visibility = ${!page.isVisible}`);
       ReactionCore.Collections.Pages.update(page._id, {
         $set: {
           isVisible: !page.isVisible
@@ -119,7 +119,7 @@ Meteor.methods({
       });
       return ReactionCore.Collections.Pages.findOne(page._id).isVisible;
     }
-    ReactionCore.Log.debug("invalid page visibility ", pageId);
+    ReactionCore.Log.info(`Invalid page ${pageId} visibility`);
     throw new Meteor.Error(400, "Bad Request");
   }
 
