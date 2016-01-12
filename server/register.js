@@ -24,7 +24,7 @@ ReactionCore.registerPackage({
   }, {
     route: "dashboard/flat-pages",
     template: "flatPagesSettings",
-    label: "Flat Page Settings",
+    label: "Flat Pages Settings",
     provides: "settings",
     icon: "fa fa-cog fa-2x fa-fw",
     container: "dashboard"
