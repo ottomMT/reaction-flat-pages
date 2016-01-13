@@ -33,9 +33,4 @@ Features
 * Dashboard integration - all pages list, deleting, reordering (in plans) options
 * All pages lives under `/page` prefix
 
-Known bugs and plans
---------------------
-
-* Admin flatpages list reordering
-* Ability to change URL-prefix 'page' in admin settings
-* Fix 'back' button in new page form
+You are welcome to submit any issues or ideas [here](https://github.com/ramusus/reaction-flat-pages/issues/)
