@@ -51,6 +51,7 @@ Template.pageDetail.events({
 Template.pageDetail.onRendered(function () {
   this.autorun((function (_this) {
     return function () {
+      Session.delete('editing-content-savetime');
       $('.content-edit-input').trumbowyg({
         btnsDef: {
           image: {

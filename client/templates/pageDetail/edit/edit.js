@@ -32,11 +32,16 @@ Template.pageDetailEdit.events({
     } else if (this.field === 'content' && event.type.indexOf('change') != -1) {
       // save every 5 sec during content changing in textarea field
       let key = `editing-${this.field}-savetime`;
-      let microsecs = Number(new Date());
-      if (microsecs - Session.get(key) < 5000) {
+      let now = Number(new Date());
+      let prev = Session.get(key);
+      if (now - prev < 5000) {
         return
       }
-      Session.set(key, microsecs);
+      Session.set(key, now);
+      // return if this is initial event for content field
+      if (!prev) {
+        return
+      }
     }
 
     Meteor.call("pages/updatePageField", pageId, this.field, value,

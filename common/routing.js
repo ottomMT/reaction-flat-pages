@@ -32,8 +32,8 @@ this.FlatPageController = FlatPageController;
 Router.map(function () {
 
   this.route("createPage", {
-    path: "page/add",
-    data: function () {
+    path: "page/create",
+    action: function () {
       Meteor.call("pages/createPage", (error, pageId) => {
         if (error) {
           throw new Meteor.Error("createPage error", error);
