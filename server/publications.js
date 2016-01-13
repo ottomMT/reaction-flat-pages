@@ -11,7 +11,7 @@ Meteor.publish('Pages', function (pageScrollLimit, shops) {
   let shopAdmin;
   let shop = ReactionCore.getCurrentShop(this);
   let Pages = ReactionCore.Collections.Pages;
-  let limit = pageScrollLimit || 10;
+  let limit = pageScrollLimit || 99;
   if (shop) {
     let selector = {
       shopId: shop._id

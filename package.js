@@ -33,8 +33,8 @@ Package.onUse(function (api) {
   api.addFiles("client/templates/pageDetail/pageDetail.js", "client");
   api.addFiles("client/templates/pageDetail/edit/edit.html", "client");
   api.addFiles("client/templates/pageDetail/edit/edit.js", "client");
-  api.addFiles("client/templates/flatPagesSettings/flatPagesSettings.html", "client");
-  api.addFiles("client/templates/flatPagesSettings/flatPagesSettings.js", "client");
+  api.addFiles("client/templates/settings/settings.html", "client");
+  api.addFiles("client/templates/settings/settings.js", "client");
 
   api.addFiles("server/register.js", "server");
   api.addFiles("server/methods/pages.js", "server");

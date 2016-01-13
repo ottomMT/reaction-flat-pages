@@ -14,8 +14,18 @@ Installation
 
     meteor add ramusus:reaction-flat-pages
 
+Screenshots
+-----------
+
+Page Form:
+
+![Page Form](http://cl.ly/3z0H0l3n2626)
+
+Dashboard Flat Pages settings 
+
+![Page Form](http://cl.ly/2k020i143Z14)
+
 Roadmap
 -------
 
-* Admin settings
-* Admin flatpages list
+* Admin flatpages list reordering

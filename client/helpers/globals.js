@@ -38,7 +38,7 @@ this.maybeDeletePage = function (page) {
         throw new Meteor.Error("Error deleting page " + id, error);
       } else {
         setCurrentPage(null);
-        Router.go("/");
+        //Router.go("/");
         return Alerts.add("Deleted " + title, "info", {
           type: "prod-delete-" + id
         });
