@@ -52,12 +52,30 @@ Template.pageDetail.onRendered(function () {
   this.autorun((function (_this) {
     return function () {
       $('.content-edit-input').trumbowyg({
+        btnsDef: {
+          image: {
+            title: 'Insert image',
+            dropdown: ['insertImage', 'upload'],
+            ico: 'insertImage'
+          }
+        },
+        btns: ['viewHTML',
+          '|', 'formatting',
+          '|', 'btnGrp-semantic',
+          '|', 'link',
+          '|', 'image',
+          '|', 'btnGrp-justify',
+          '|', 'btnGrp-lists',
+          '|', 'horizontalRule',
+          '|', 'removeformat'
+        ],
         removeformatPasted: true,
         autogrow: true,
+        fullscreenable: false,
         lang: Session.get("language")
       });
       // TODO: move to CSS changing default width
-      $('.trumbowyg-box').width('100%');
+      $('.trumbowyg-box').css('width', '100%');
     };
   })(this));
 });

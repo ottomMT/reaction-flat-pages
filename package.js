@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Flat pages for reactioncommerce",
   name: "ramusus:reaction-flat-pages",
-  version: "0.0.7",
+  version: "0.0.8",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
 });
 
@@ -14,7 +14,9 @@ Package.onUse(function (api) {
 
   api.addFiles("lib/bower.json", "client");
   api.addFiles("lib/bower/trumbowyg/dist/trumbowyg.js", "client");
+  api.addFiles("lib/bower/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js", "client");
   api.addFiles("lib/bower/trumbowyg/dist/ui/trumbowyg.min.css", "client");
+  api.addFiles("lib/bower/trumbowyg/dist/langs/ru.min.js", "client");
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black-2x.png", "client");
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
