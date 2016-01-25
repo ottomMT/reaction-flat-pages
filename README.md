@@ -23,7 +23,7 @@ Page:
 
 Page Form:
 
-![Page Form](https://s3.amazonaws.com/f.cl.ly/items/41152z4341111Y180A1A/Image%202016-01-13%20at%206.07.56%20PM.png?v=03a9d106)
+![Page Form](https://s3.amazonaws.com/f.cl.ly/items/2s2q213o0L3V2G310n47/Image%202016-01-25%20at%205.17.37%20PM.png?v=fb84adbe)
 
 Dashboard Flat Pages settings 
 
