@@ -32,6 +32,7 @@ this.FlatPageController = FlatPageController;
 Router.map(function () {
 
   this.route("createPage", {
+    // TODO: deprecated route, exists until issue is open https://github.com/ramusus/reaction-flat-pages/issues/5
     path: "page/create",
     action: function () {
       Meteor.call("pages/createPage", (error, pageId) => {

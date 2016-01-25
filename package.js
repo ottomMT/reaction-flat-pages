@@ -1,15 +1,30 @@
 Package.describe({
   summary: "Flat pages for reactioncommerce",
   name: "ramusus:reaction-flat-pages",
-  version: "0.0.9",
+  version: "0.0.10",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
 });
 
 Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.2");
 
-  api.use("reactioncommerce:core@0.10.2");
-  api.use("meteor-platform");
+  // meteor base packages
+  api.use("meteor-base");
+  api.use("mongo");
+  api.use("ecmascript");
+  api.use("es5-shim");
+  api.use("blaze-html-templates");
+  api.use("session");
+  api.use("jquery");
+  api.use("tracker");
+
+  // meteor add-on packages
+  api.use("random");
+  api.use("check");
+  api.use("ejson");
+
+  // add-on packages
+  api.use("reactioncommerce:core@0.11.0");
   api.use("mquandalle:bower@1.5.2_1");
 
   api.addFiles("lib/bower.json", "client");
@@ -49,4 +64,27 @@ Package.onUse(function (api) {
     "ReactionStaticPage",
     "StaticPageController"
   ]);
+});
+
+Package.onTest(function (api) {
+  api.use("underscore");
+  api.use("random");
+  api.use("sanjo:jasmine@0.20.3");
+  api.use("velocity:html-reporter@0.9.1");
+  api.use("velocity:console-reporter@0.1.4");
+
+  api.use("accounts-base");
+  api.use("accounts-password");
+
+  // reaction core
+  api.use("reactioncommerce:core@0.11.0");
+  api.use("reactioncommerce:reaction-factories@0.3.7");
+  api.use("ramusus:reaction-flat-pages@0.0.9");
+
+  // factories
+  api.addFiles("common/factories/pages.js", "server");
+
+  // server integration tests
+  api.addFiles("tests/jasmine/server/integration/pages.js", "server");
+  api.export("faker", ["server"]);
 });
