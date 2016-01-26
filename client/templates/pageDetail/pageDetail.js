@@ -1,6 +1,67 @@
 /**
+ * productImageGallery helpers
+ */
+
+let Media = ReactionCore.Collections.Media;
+
+/**
+ * uploadHandler method
+ */
+
+function uploadHandler(event) {
+  let pageId = selectedPageId();
+  let shopId = selectedPage().shopId || ReactionCore.getShopId();
+  let userId = Meteor.userId();
+  //let alt = values.alt;
+  let count = Media.find({
+    "metadata.pageId": pageId
+  }).count();
+
+  FS.Utility.eachFile(event, function (file) {
+    let fileObj;
+    fileObj = new FS.File(file);
+    fileObj.metadata = {
+      ownerId: userId,
+      pageId: pageId,
+      shopId: shopId
+    };
+
+    // progress bar
+    let prefix = "trumbowyg-";
+    if ($('.' + prefix + 'progress').length === 0) {
+      $('.' + prefix + 'modal-title').after(
+        $('<div/>').attr('class', prefix + 'progress').append(
+          $('<div/>').attr('class', prefix + 'progress-bar').css('width', 0)
+        )
+      );
+    } else {
+      $('.' + prefix + 'progress-bar').css('width', 0);
+    }
+
+    Media.insert(fileObj, function (err, fileObj) {
+
+      // progress bar
+      var myInterval = setInterval(function () {
+        let progress = fileObj.uploadProgress();
+        $('.' + prefix + 'progress-bar').stop().animate({
+          width: progress + '%'
+        });
+        console.log(progress);
+        if(progress === 100) {
+          clearInterval(myInterval);
+        }
+      }, 1);
+
+      Session.set('file-uploaded', fileObj);
+    });
+    return count++;
+  });
+}
+
+/**
  * pageDetail helpers
  */
+
 Template.pageDetail.helpers({
   fieldComponent: function () {
     if (ReactionCore.hasPermission("createPage")) {
@@ -45,7 +106,8 @@ Template.pageDetail.events({
   },
   "click .delete-page-link": function () {
     maybeDeletePage(this);
-  }
+  },
+  "change input:file": uploadHandler
 });
 
 Template.pageDetail.onRendered(function () {
@@ -73,9 +135,19 @@ Template.pageDetail.onRendered(function () {
         removeformatPasted: true,
         autogrow: true,
         fullscreenable: false,
-        lang: Session.get("language")
+        lang: Session.get("language"),
+        uploadHandler: function(tbw, alt) {
+          let fileObj = Session.get('file-uploaded');
+          var url = fileObj.url();
+          tbw.execCmd('insertImage', url);
+          $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
+          setTimeout(function () {
+            tbw.closeModal();
+          }, 250);
+        },
       });
-      // TODO: move to CSS changing default width
+      // TODO: move to CSS
+      // changing default width
       $('.trumbowyg-box').css('width', '100%');
     };
   })(this));

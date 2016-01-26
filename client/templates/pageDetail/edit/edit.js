@@ -19,7 +19,7 @@ Template.pageDetailEdit.helpers({
  */
 
 Template.pageDetailEdit.events({
-  "change input,textarea, blur textarea, tbwblur, tbwchange": function (event) {
+  "change input:text,textarea, blur textarea, tbwblur, tbwchange": function (event) {
     const self = this;
     const pageId = selectedPageId();
     const value = $(event.currentTarget).val();
@@ -42,6 +42,15 @@ Template.pageDetailEdit.events({
       if (!prev) {
         return
       }
+    } else if (this.field === 'content' && event.type == 'tbwblur') {
+      // on loosing focus, check and delete all Media, which are not in the current content
+      let Media = ReactionCore.Collections.Media;
+      let pageMedia = Media.find({"metadata.pageId": pageId});
+      Media.find({"metadata.pageId": pageId}).forEach(function(media) {
+        if (value.indexOf(media.url()) == -1) {
+          Media.remove({"_id": media._id}, 1);
+        }
+      });
     }
 
     Meteor.call("pages/updatePageField", pageId, this.field, value,
@@ -53,7 +62,7 @@ Template.pageDetailEdit.events({
             id: this._id
           });
         }
-        //
+        // go to new url of page
         if (self.field === 'handle') {
           return Router.go("page", {
             _id: value

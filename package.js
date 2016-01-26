@@ -26,11 +26,12 @@ Package.onUse(function (api) {
   // add-on packages
   api.use("reactioncommerce:core@0.11.0");
   api.use("mquandalle:bower@1.5.2_1");
+  api.use("cfs:ejson-file");
 
   api.addFiles("lib/bower.json", "client");
   api.addFiles("lib/bower/trumbowyg/dist/trumbowyg.js", "client");
-  api.addFiles("lib/bower/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js", "client");
-  api.addFiles("lib/bower/trumbowyg/dist/ui/trumbowyg.min.css", "client");
+  api.addFiles("lib/trumbowyg.upload.js", "client");
+  api.addFiles("lib/bower/trumbowyg/dist/ui/trumbowyg.css", "client");
   api.addFiles("lib/bower/trumbowyg/dist/langs/ru.min.js", "client");
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black-2x.png", "client");
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
@@ -59,6 +60,9 @@ Package.onUse(function (api) {
   // for now need to add content of this files to the end of reaction-code/private/data/i18n/*.json files
   //api.addAssets("private/data/i18n/en.json", "server");
   //api.addAssets("private/data/i18n/ru.json", "server");
+
+  // security
+  api.addFiles("server/browserPolicy.js", "server");
 
   api.export([
     "ReactionStaticPage",
