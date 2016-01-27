@@ -33,8 +33,8 @@ Package.onUse(function (api) {
   api.addFiles("lib/trumbowyg.upload.js", "client");
   api.addFiles("lib/bower/trumbowyg/dist/ui/trumbowyg.css", "client");
   api.addFiles("lib/bower/trumbowyg/dist/langs/ru.min.js", "client");
-  //api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black-2x.png", "client");
-  //api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
+  api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black-2x.png", "client");
+  api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
   api.addFiles("common/collections.js");
   api.addFiles("common/routing.js");
