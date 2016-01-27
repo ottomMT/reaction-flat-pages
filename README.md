@@ -32,9 +32,10 @@ Dashboard Flat Pages settings
 Features
 --------
 
-* Link "Add Page" in right sidebar
-* Reactive Page form with ability to change fields in place (product style)
-* Dashboard integration - all pages list, deleting, reordering (in plans) options
-* All pages lives under `/page` prefix
+* Link "Add Page" in right sidebar;
+* Reactive Page form with ability to change fields in place (Product form style);
+* Dashboard integration - all pages list, deleting, reordering (in plans) options;
+* All pages lives under `/page` URL-prefix;
+* Wysisyg content field with ability to upload multiple images at once.
 
 You are welcome to submit any issues or ideas [here](https://github.com/ramusus/reaction-flat-pages/issues/)
