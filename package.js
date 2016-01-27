@@ -26,7 +26,7 @@ Package.onUse(function (api) {
   // add-on packages
   api.use("reactioncommerce:core@0.11.0");
   api.use("mquandalle:bower@1.5.2_1");
-  api.use("cfs:ejson-file");
+  api.use("cfs:ejson-file@0.0.0");
 
   api.addFiles("lib/bower.json", "client");
   api.addFiles("lib/trumbowyg.js", "client");
