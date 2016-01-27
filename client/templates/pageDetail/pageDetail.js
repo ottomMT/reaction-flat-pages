@@ -17,7 +17,8 @@ function uploadHandler(event) {
     "metadata.pageId": pageId
   }).count();
 
-  FS.Utility.eachFile(event, function (file) {
+  Session.set('files-uploaded', []);
+  return FS.Utility.eachFile(event, function (file) {
     let fileObj;
     fileObj = new FS.File(file);
     fileObj.metadata = {
@@ -41,18 +42,19 @@ function uploadHandler(event) {
     Media.insert(fileObj, function (err, fileObj) {
 
       // progress bar
-      var myInterval = setInterval(function () {
+      let myInterval = setInterval(function () {
         let progress = fileObj.uploadProgress();
         $('.' + prefix + 'progress-bar').stop().animate({
           width: progress + '%'
         });
-        console.log(progress);
         if(progress === 100) {
           clearInterval(myInterval);
         }
       }, 1);
 
-      Session.set('file-uploaded', fileObj);
+      let filesUploaded = Session.get('files-uploaded');
+      filesUploaded.push(fileObj);
+      Session.set('files-uploaded', filesUploaded);
     });
     return count++;
   });
@@ -137,13 +139,14 @@ Template.pageDetail.onRendered(function () {
         fullscreenable: false,
         lang: Session.get("language"),
         uploadHandler: function(tbw, alt) {
-          let fileObj = Session.get('file-uploaded');
-          var url = fileObj.url();
-          tbw.execCmd('insertImage', url);
-          $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
-          setTimeout(function () {
-            tbw.closeModal();
-          }, 250);
+          for(let fileObj of Session.get('files-uploaded')) {
+            var url = fileObj.url();
+            tbw.execCmd('insertImage', url);
+            $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
+            setTimeout(function () {
+              tbw.closeModal();
+            }, 250);
+          }
         },
       });
       // TODO: move to CSS

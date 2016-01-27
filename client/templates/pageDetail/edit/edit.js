@@ -76,10 +76,6 @@ Template.pageDetailEdit.events({
         });
       });
 
-    //if (this.type === "textarea") {
-    //  autosize($(event.currentTarget));
-    //}
-
     return Session.set("editing-" + this.field, false);
   }
 });

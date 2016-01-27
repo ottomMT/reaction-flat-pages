@@ -29,7 +29,7 @@ Package.onUse(function (api) {
   api.use("cfs:ejson-file");
 
   api.addFiles("lib/bower.json", "client");
-  api.addFiles("lib/bower/trumbowyg/dist/trumbowyg.js", "client");
+  api.addFiles("lib/trumbowyg.js", "client");
   api.addFiles("lib/trumbowyg.upload.js", "client");
   api.addFiles("lib/bower/trumbowyg/dist/ui/trumbowyg.css", "client");
   api.addFiles("lib/bower/trumbowyg/dist/langs/ru.min.js", "client");
