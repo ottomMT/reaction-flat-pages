@@ -13,15 +13,12 @@ ReactionCore.registerPackage({
     provides: "dashboard",
     label: "Flat Pages",
     description: "Easily add flat pages anywhere into Reaction Commerce",
-    i18nKeyLabel: "admin.dashboard.flatPagesLabel",
-    i18nKeyDescription: "admin.dashboard.flatPagesDescription",
     icon: "fa fa-file-text-o",
     cycle: 3,
     container: "dashboard"
   }, {
     route: "createPage",
     label: "Add Page",
-    i18nKeyLabel: "admin.shortcuts.addPage",
     icon: "fa fa-plus",
     provides: "shortcut"
   }, {

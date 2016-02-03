@@ -24,12 +24,7 @@ Template.pageDetailEdit.events({
     const pageId = selectedPageId();
     const value = $(event.currentTarget).val();
 
-    if (this.field === 'handle' && value === 'create') {
-      return Alerts.add(i18n.t("pageDetailEdit.handleReservedError"), "danger", {
-        placement: "pageManagement",
-        id: this._id
-      });
-    } else if (this.field === 'content' && event.type.indexOf('change') != -1) {
+    if (this.field === 'content' && event.type.indexOf('change') != -1) {
       // save every 5 sec during content changing in textarea field
       let key = `editing-${this.field}-savetime`;
       let now = Number(new Date());

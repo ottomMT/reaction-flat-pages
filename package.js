@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "Flat pages for reactioncommerce",
+  summary: "Flat pages for Reaction Commerce",
   name: "ramusus:reaction-flat-pages",
   version: "0.1.0",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
@@ -56,7 +56,7 @@ Package.onUse(function (api) {
   api.addFiles("server/methods/pages.js", "server");
   api.addFiles("server/publications.js", "server");
 
-  // TODO: Find another way to use this files
+  // TODO: Find another way to use this files, look https://github.com/reactioncommerce/reaction/issues/696
   // for now need to add content of this files to the end of reaction-code/private/data/i18n/*.json files
   //api.addAssets("private/data/i18n/en.json", "server");
   //api.addAssets("private/data/i18n/ru.json", "server");
@@ -64,10 +64,7 @@ Package.onUse(function (api) {
   // security
   api.addFiles("server/browserPolicy.js", "server");
 
-  api.export([
-    "ReactionStaticPage",
-    "StaticPageController"
-  ]);
+  api.export();
 });
 
 Package.onTest(function (api) {
