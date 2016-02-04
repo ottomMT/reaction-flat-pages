@@ -59,9 +59,7 @@ Template.pageDetailEdit.events({
         }
         // go to new url of page
         if (self.field === 'handle') {
-          return Router.go("page", {
-            _id: value
-          });
+          return ReactionRouter.go("/page/" + value);
         }
         // animate updated field
         return $(event.currentTarget).animate({

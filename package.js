@@ -41,7 +41,6 @@ Package.onUse(function (api) {
   api.addFiles("routes/pages.js");
 
   api.addFiles("client/app.js", "client");
-  //api.addFiles("client/subscriptions.js", "client");
   api.addFiles("client/helpers/pages.js", "client");
 
   api.addFiles("client/templates/pageDetail/pageDetail.html", "client");

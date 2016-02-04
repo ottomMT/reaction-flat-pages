@@ -82,6 +82,9 @@ Meteor.methods({
     if (!ReactionCore.hasPermission("createPage")) {
       throw new Meteor.Error(403, "Access Denied");
     }
+    if(field === 'handle' && ReactionCore.Collections.Pages.findOne({handle: value})) {
+      throw new Meteor.Error(403, "The page with this handle already exists");
+    }
     this.unblock();
 
     let stringValue = EJSON.stringify(value);
