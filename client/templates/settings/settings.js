@@ -16,6 +16,6 @@ Template.flatPagesSettings.onCreated(function () {
 
 Template.flatPagesSettings.events({
   "click [data-event-action=deletePage]": function () {
-    maybeDeletePage(this);
+    ReactionPage.maybeDeletePage(this);
   }
 });

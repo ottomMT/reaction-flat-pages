@@ -9,10 +9,9 @@ let Media = ReactionCore.Collections.Media;
  */
 
 function uploadHandler(event) {
-  let pageId = selectedPageId();
-  let shopId = selectedPage().shopId || ReactionCore.getShopId();
-  let userId = Meteor.userId();
-  //let alt = values.alt;
+  const pageId = ReactionPage.selectedPageId();
+  const shopId = ReactionPage.selectedPage().shopId || ReactionCore.getShopId();
+  const userId = Meteor.userId();
   let count = Media.find({
     "metadata.pageId": pageId
   }).count();
@@ -60,11 +59,20 @@ function uploadHandler(event) {
   });
 }
 
+Template.pageDetail.onCreated(() => {
+  Tracker.autorun(() => {
+    Meteor.subscribe("Page", ReactionPage.selectedPageId());
+  });
+});
+
 /**
  * pageDetail helpers
  */
 
 Template.pageDetail.helpers({
+  page: function () {
+    return ReactionCore.Collections.Pages.findOne();
+  },
   fieldComponent: function () {
     if (ReactionCore.hasPermission("createPage")) {
       return Template.pageDetailEdit;
@@ -107,51 +115,7 @@ Template.pageDetail.events({
     }
   },
   "click .delete-page-link": function () {
-    maybeDeletePage(this);
+    ReactionPage.maybeDeletePage(this);
   },
   "change input:file": uploadHandler
-});
-
-Template.pageDetail.onRendered(function () {
-  this.autorun((function (_this) {
-    return function () {
-      Session.delete('editing-content-savetime');
-      $('.content-edit-input').trumbowyg({
-        btnsDef: {
-          image: {
-            title: 'Insert image',
-            dropdown: ['insertImage', 'upload'],
-            ico: 'insertImage'
-          }
-        },
-        btns: ['viewHTML',
-          '|', 'formatting',
-          '|', 'btnGrp-semantic',
-          '|', 'link',
-          '|', 'image',
-          '|', 'btnGrp-justify',
-          '|', 'btnGrp-lists',
-          '|', 'horizontalRule',
-          '|', 'removeformat'
-        ],
-        removeformatPasted: true,
-        autogrow: true,
-        fullscreenable: false,
-        lang: Session.get("language"),
-        uploadHandler: function(tbw, alt) {
-          for(let fileObj of Session.get('files-uploaded')) {
-            var url = fileObj.url();
-            tbw.execCmd('insertImage', url);
-            $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
-            setTimeout(function () {
-              tbw.closeModal();
-            }, 250);
-          }
-        },
-      });
-      // TODO: move to CSS
-      // changing default width
-      $('.trumbowyg-box').css('width', '100%');
-    };
-  })(this));
 });

@@ -9,7 +9,7 @@ page = ReactionRouter.group({
 page.route("/:handle", {
   name: "page",
   action: function (params) {
-    ReactionCore.setPage(params.handle);
+    ReactionPage.setPage(params.handle);
     // initialize reaction layout
     renderLayout({
       workflow: "corePageWorkflow"

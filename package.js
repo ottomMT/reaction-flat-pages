@@ -38,13 +38,10 @@ Package.onUse(function (api) {
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
   api.addFiles("common/collections.js");
-  //api.addFiles("common/routing.js");
-  api.addFiles("common/common.js");
   api.addFiles("routes/pages.js");
 
   api.addFiles("client/app.js", "client");
-  api.addFiles("client/subscriptions.js", "client");
-  api.addFiles("client/helpers/globals.js", "client");
+  //api.addFiles("client/subscriptions.js", "client");
   api.addFiles("client/helpers/pages.js", "client");
 
   api.addFiles("client/templates/pageDetail/pageDetail.html", "client");
@@ -66,7 +63,9 @@ Package.onUse(function (api) {
   // security
   api.addFiles("server/browserPolicy.js", "server");
 
-  api.export();
+  // exports
+  api.export("currentPage", ["client", "server"]);
+  api.export("ReactionPage");
 });
 
 Package.onTest(function (api) {

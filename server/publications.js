@@ -9,9 +9,14 @@ Meteor.publish('Pages', function (pageScrollLimit, shops) {
   check(shops, Match.Optional(Array));
 
   let shopAdmin;
-  let shop = ReactionCore.getCurrentShop(this);
-  let Pages = ReactionCore.Collections.Pages;
-  let limit = pageScrollLimit || 99;
+  const limit = pageScrollLimit || 99;
+  const shop = ReactionCore.getCurrentShop();
+  const Pages = ReactionCore.Collections.Pages;
+
+  if (typeof shop !== "object") {
+    return this.ready();
+  }
+
   if (shop) {
     let selector = {
       shopId: shop._id
@@ -53,9 +58,18 @@ Meteor.publish('Pages', function (pageScrollLimit, shops) {
  * @return {Object} return page cursor
  */
 Meteor.publish("Page", function (pageId) {
-  check(pageId, String);
-  let shop = ReactionCore.getCurrentShop(this);
-  let Pages = ReactionCore.Collections.Pages;
+  check(pageId, Match.Optional(String));
+  if (!pageId) {
+    ReactionCore.Log.info("ignoring null request on Page subscription");
+    return this.ready();
+  }
+
+  let shop = ReactionCore.getCurrentShop();
+  // verify that shop is ready
+  if (typeof shop !== "object") {
+    return this.ready();
+  }
+
   let selector = {};
   selector.isVisible = true;
 
@@ -73,5 +87,5 @@ Meteor.publish("Page", function (pageId) {
       $options: "i"
     };
   }
-  return Pages.find(selector);
+  return ReactionCore.Collections.Pages.find(selector);
 });

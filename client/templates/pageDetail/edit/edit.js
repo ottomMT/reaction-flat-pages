@@ -21,7 +21,7 @@ Template.pageDetailEdit.helpers({
 Template.pageDetailEdit.events({
   "change input:text,textarea, blur textarea, tbwblur, tbwchange": function (event) {
     const self = this;
-    const pageId = selectedPageId();
+    const pageId = ReactionPage.selectedPageId();
     const value = $(event.currentTarget).val();
 
     if (this.field === 'content' && event.type.indexOf('change') != -1) {
@@ -95,5 +95,41 @@ Template.pageDetailField.events({
  */
 
 Template.pageDetailEdit.onRendered(function () {
-  return autosize($("textarea"));
+  Session.delete('editing-content-savetime');
+  $('.content-edit-input').trumbowyg({
+    btnsDef: {
+      image: {
+        title: 'Insert image',
+        dropdown: ['insertImage', 'upload'],
+        ico: 'insertImage'
+      }
+    },
+    btns: ['viewHTML',
+      '|', 'formatting',
+      '|', 'btnGrp-semantic',
+      '|', 'link',
+      '|', 'image',
+      '|', 'btnGrp-justify',
+      '|', 'btnGrp-lists',
+      '|', 'horizontalRule',
+      '|', 'removeformat'
+    ],
+    removeformatPasted: true,
+    autogrow: true,
+    fullscreenable: false,
+    lang: Session.get("language"),
+    uploadHandler: function(tbw, alt) {
+      for(let fileObj of Session.get('files-uploaded')) {
+        var url = fileObj.url();
+        tbw.execCmd('insertImage', url);
+        $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
+        setTimeout(function () {
+          tbw.closeModal();
+        }, 250);
+      }
+    },
+  });
+  // TODO: move to CSS
+  // changing default width
+  $('.trumbowyg-box').css('width', '100%');
 });
