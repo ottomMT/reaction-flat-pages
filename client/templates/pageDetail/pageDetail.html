@@ -1,56 +1,56 @@
 <template name="pageDetail">
-    <div class="container-main">
-        <div class="container-fluid pdp-container">
-          {{!-- Page Visibility Admin Block --}}
-          {{#if hasPermission "createPage"}}
-              <div class="row">
-                  <span data-i18n="pageDetail.pageManagement">Page management:</span>
-                {{#if isVisible}}
-                    <a href="#" class="toggle-page-isVisible-link" data-i18n="pageDetail.makeInvisible">Make
-                        invisible</a> |
-                {{/if}}
-                {{#if hasAdminAccess}}
-                    <a href="#" class="delete-page-link" data-i18n="app.delete">Delete</a>
-                {{/if}}
-              </div>
-            {{#unless isVisible}}
-                <div class="row">
-                    <div class="alert alert-warning">
-                        <span data-i18n="pageDetail.isNotVisible">This page is not visible to customers.</span>
-                        <a href="#" class="toggle-page-isVisible-link" data-i18n="pageDetail.makeItVisible">You can make
-                            it visible</a>
-                        <span data-i18n="pageDetail.whenYouAreDone">when you're done editing.</span>
-                    </div>
-                </div>
-            {{/unless}}
-              <div class="row">
-                  <span id="page-management-alerts">{{>bootstrapAlerts placement="pageManagement"}}</span>
-              </div>
-              <div class="row title-edit">
-                  <h3>{{>fieldComponent field="handle" value=handle}}</h3>
-              </div>
+  {{#with page}}
+  <div class="container-main">
+    <div class="container-fluid pdp-container">
+      {{!-- Page Visibility Admin Block --}}
+      {{#if hasPermission "createPage"}}
+        <div class="row">
+          <span data-i18n="pageDetail.pageManagement">Page management:</span>
+          {{#if isVisible}}
+            <a href="#" class="toggle-page-isVisible-link" data-i18n="pageDetail.makeInvisible">Make invisible</a> |
           {{/if}}
-          {{!-- END Page Visibility Admin Block --}}
-            <div class="row">
-                <div class="title">
-                    <h1 id="title">{{>fieldComponent field="title" value=title}}</h1>
-                </div>
-                <div class="pageTitle">
-                    <h2 id="pageTitle">{{>fieldComponent field="pageTitle" value=pageTitle}}</h2>
-                </div>
-                <div class="content">
-                  {{>fieldComponent field="content" value=content type="textarea"}}
-                </div>
+          {{#if hasAdminAccess}}
+            <a href="#" class="delete-page-link" data-i18n="app.delete">Delete</a>
+          {{/if}}
+        </div>
+        {{#unless isVisible}}
+          <div class="row">
+            <div class="alert alert-warning">
+              <span data-i18n="pageDetail.isNotVisible">This page is not visible to customers.</span>
+              <a href="#" class="toggle-page-isVisible-link" data-i18n="pageDetail.makeItVisible">You can make it visible</a>
+              <span data-i18n="pageDetail.whenYouAreDone">when you're done editing.</span>
             </div>
+          </div>
+        {{/unless}}
+        <div class="row">
+            <span id="page-management-alerts">{{>bootstrapAlerts placement="pageManagement"}}</span>
+        </div>
+        <div class="row title-edit">
+            <h3>{{>fieldComponent field="handle" value=handle}}</h3>
+        </div>
+      {{/if}}
+      {{!-- END Page Visibility Admin Block --}}
+        <div class="row">
+          <div class="title">
+            <h1 id="title">{{>fieldComponent field="title" value=title}}</h1>
+          </div>
+          <div class="pageTitle">
+            <h2 id="pageTitle">{{>fieldComponent field="pageTitle" value=pageTitle}}</h2>
+          </div>
+          <div class="content">
+            {{>fieldComponent field="content" value=content type="textarea"}}
+          </div>
         </div>
     </div>
+  </div>
+  {{/with}}
 </template>
 
 <template name="pageNotFound">
-    <div class="container-fluid">
-        <h1>
-            <span data-i18n="pageDetail.notFoundTitle">Oops!</span>
-            <small data-i18n="pageDetail.notFoundError">This is not the page you were looking for.</small>
-        </h1>
-    </div>
+  <div class="container-fluid">
+    <h1>
+      <span data-i18n="pageDetail.notFoundTitle">Oops!</span>
+      <small data-i18n="pageDetail.notFoundError">This is not the page you were looking for.</small>
+    </h1>
+  </div>
 </template>

@@ -1,1 +1,1 @@
-//ReactionCore.Subscriptions.Page = Meteor.subscribe "pagesList"
+ReactionCore.Subscriptions.Pages = Meteor.subscribe("Pages");

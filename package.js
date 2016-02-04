@@ -25,6 +25,7 @@ Package.onUse(function (api) {
 
   // add-on packages
   api.use("reactioncommerce:core@0.11.0");
+  api.use("reactioncommerce:reaction-router@1.0.0");
   api.use("mquandalle:bower@1.5.2_1");
   api.use("cfs:ejson-file@0.0.0");
 
@@ -37,8 +38,9 @@ Package.onUse(function (api) {
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
   api.addFiles("common/collections.js");
-  api.addFiles("common/routing.js");
+  //api.addFiles("common/routing.js");
   api.addFiles("common/common.js");
+  api.addFiles("routes/pages.js");
 
   api.addFiles("client/app.js", "client");
   api.addFiles("client/subscriptions.js", "client");

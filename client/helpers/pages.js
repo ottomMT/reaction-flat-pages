@@ -37,7 +37,8 @@ this.currentPage = {
 };
 
 // export currentPage
-currentPage = this.currentPage;
+// export currentProduct
+ReactionCore.currentPage = currentPage = this.currentPage;
 
 /**
  * setCurrentPage
