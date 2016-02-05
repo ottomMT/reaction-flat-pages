@@ -24,7 +24,7 @@ Package.onUse(function (api) {
   api.use("ejson");
 
   // add-on packages
-  api.use("reactioncommerce:core@0.11.0");
+  api.use("reactioncommerce:core@0.12.0");
   api.use("reactioncommerce:reaction-router@1.0.0");
   api.use("mquandalle:bower@1.5.2_1");
   api.use("cfs:ejson-file@0.0.0");
