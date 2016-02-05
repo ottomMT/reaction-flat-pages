@@ -14,5 +14,8 @@ page.route("/:handle", {
     renderLayout({
       workflow: "corePageWorkflow"
     });
+  },
+  subscriptions: function(params) {
+    this.register('page', Meteor.subscribe('Page', params.handle));
   }
 });
