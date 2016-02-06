@@ -59,19 +59,13 @@ function uploadHandler(event) {
   });
 }
 
-Template.pageDetail.onCreated(() => {
-  Tracker.autorun(() => {
-    Meteor.subscribe("Page", ReactionPage.selectedPageId());
-  });
-});
-
 /**
  * pageDetail helpers
  */
 
 Template.pageDetail.helpers({
   page: function () {
-    return ReactionCore.Collections.Pages.findOne();
+    return ReactionPage.selectedPage();
   },
   fieldComponent: function () {
     if (ReactionCore.hasPermission("createPage")) {
@@ -98,14 +92,14 @@ Template.pageDetail.events({
       template.$(".content-edit-input").focus();
     }
     if (errorMsg.length > 0) {
-      Alerts.add(errorMsg, "danger", {
+      Alerts.inline(errorMsg, "danger", {
         placement: "pageManagement",
         i18nKey: "pageDetail.errorMsg"
       });
     } else {
       Meteor.call("pages/publishPage", self._id, function (error) {
         if (error) {
-          return Alerts.add(error.reason, "danger", {
+          return Alerts.inline(error.reason, "danger", {
             placement: "pageManagement",
             id: self._id,
             i18nKey: "pageDetail.errorMsg"

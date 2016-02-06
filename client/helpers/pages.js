@@ -1,64 +1,22 @@
 /**
  *  currentPage
  *  @summary Reactive current page dependency, ensuring reactive pages, without session
- *  @todo rename as this can easily be confused with ReactionCore.setCurrentPage
+ *  @todo rename as this can easily be confused with ReactionCore.setPage
  *  @todo this is a messy class implementation, normalize it.
  *  @description
  *  pages:
- *  set usage: ReactionPage.currentPage.set "pageId",string
- *  get usage: ReactionPage.currentPage.get "pageId"
  */
-ReactionPage = {};
-ReactionPage.currentPage = {
-  keys: {},
-  deps: {},
-  equals: function (key) {
-    return this.keys[key];
-  },
-  get: function (key) {
-    this.ensureDeps(key);
-    this.deps[key].depend();
-    return this.keys[key];
-  },
-  set: function (key, value) {
-    this.ensureDeps(key);
-    this.keys[key] = value;
-    return this.deps[key].changed();
-  },
-  changed: function (key) {
-    this.ensureDeps(key);
-    return this.deps[key].changed();
-  },
-  ensureDeps: function (key) {
-    if (!this.deps[key]) {
-      this.deps[key] = new Tracker.Dependency();
-      return this.deps[key];
+ReactionPage = new ReactiveDict("currentPage");
+
+Tracker.autorun(function () {
+  ReactionRouter.watchPathChange();
+  if (ReactionRouter.getParam("handle")) {
+    const pageSub = ReactionSubMan.subscribe("Page", ReactionRouter.getParam("handle"));
+    if (pageSub.ready()) {
+      return ReactionPage.setPage(ReactionRouter.getParam("handle"));
     }
   }
-};
-
-// export currentPage
-// ReactionCore.currentPage = currentPage = this.currentPage;
-
-/**
- * setCurrentPage
- * @param {String} pageId - set current pageId
- * @return {undefined}
- */
-ReactionPage.setCurrentPage = (pageId) => {
-  let currentId;
-  if (pageId === null) {
-    ReactionPage.currentPage.set("pageId", null);
-  }
-  if (!pageId) {
-    return;
-  }
-  currentId = ReactionPage.selectedPageId();
-  if (currentId === pageId) {
-    return;
-  }
-  ReactionPage.currentPage.set("pageId", pageId);
-};
+});
 
 /**
  * ReactionPage.setPage
@@ -76,7 +34,7 @@ ReactionPage.setPage = (currentPageId) => {
       pageId = page._id;
     }
   }
-  ReactionPage.setCurrentPage(pageId);
+  ReactionPage.set("pageId", pageId);
 };
 
 /**
@@ -85,10 +43,8 @@ ReactionPage.setPage = (currentPageId) => {
  * @return {Object|undefined} currently selected page cursor
  */
 ReactionPage.selectedPage = () => {
-  const id = ReactionPage.selectedPageId();
-  if (typeof id === "string") {
-    return ReactionCore.Collections.Pages.findOne(id);
-  }
+  const page = ReactionCore.Collections.Pages.findOne(ReactionPage.get("pageId"));
+  return page;
 };
 
 /**
@@ -97,7 +53,7 @@ ReactionPage.selectedPage = () => {
  * @return {String} currently selected page id
  */
 ReactionPage.selectedPageId = () => {
-  return ReactionPage.currentPage.get("pageId");
+  return ReactionPage.get("pageId");
 };
 
 /**
@@ -133,17 +89,14 @@ ReactionPage.maybeDeletePage = (page) => {
     return Meteor.call("pages/deletePage", pageIds, function (error, result) {
       let id = "page";
       if (error || !result) {
-        Alerts.add("There was an error deleting " + title, "danger", {
-          type: "prod-delete-" + id,
+        Alerts.toast("There was an error deleting " + title, "danger", {
           i18nKey: "pageDetail.pageDeleteError"
         });
         throw new Meteor.Error("Error deleting page " + id, error);
       } else {
-        ReactionPage.setCurrentPage(null);
-        //Router.go("/");
-        return Alerts.add("Deleted " + title, "info", {
-          type: "prod-delete-" + id
-        });
+        ReactionPage.setPage(null);
+        //ReactionRouter.go("/");
+        return Alerts.toast(`Deleted ${title}`, "info");
       }
     });
   }

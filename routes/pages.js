@@ -1,3 +1,7 @@
+//
+// page route group
+//
+
 page = ReactionRouter.group({
   prefix: "/page"
 });
@@ -9,7 +13,6 @@ page = ReactionRouter.group({
 page.route("/:handle", {
   name: "page",
   action: function (params) {
-    ReactionPage.setPage(params.handle);
     // initialize reaction layout
     renderLayout({
       workflow: "corePageWorkflow"

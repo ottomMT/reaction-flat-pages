@@ -51,7 +51,7 @@ Template.pageDetailEdit.events({
     Meteor.call("pages/updatePageField", pageId, this.field, value,
       function (error) {
         if (error) {
-          return Alerts.add(error.reason, "danger", {
+          return Alerts.inline(error.reason, "danger", {
             placement: "pageManagement",
             i18nKey: "pageDetail.errorMsg",
             id: this._id
@@ -59,7 +59,8 @@ Template.pageDetailEdit.events({
         }
         // go to new url of page
         if (self.field === 'handle') {
-          return ReactionRouter.go("/page/" + value);
+          return ReactionRouter.setParams({handle: value});
+          //ReactionRouter.go("/page/" + value);
         }
         // animate updated field
         return $(event.currentTarget).animate({
