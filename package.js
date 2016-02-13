@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Flat pages for Reaction Commerce",
   name: "ramusus:reaction-flat-pages",
-  version: "0.1.2",
+  version: "0.1.3",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
 });
 
