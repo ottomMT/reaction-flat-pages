@@ -48,8 +48,8 @@ Template.pageDetailEdit.events({
       });
     }
 
-    Meteor.call("pages/updatePageField", pageId, this.field, value,
-      function (error) {
+    Reaction.FlatPages.methods.updatePageField.call(pageId, this.field, value,
+      (error) => {
         if (error) {
           return Alerts.inline(error.reason, "danger", {
             placement: "pageManagement",

@@ -97,7 +97,7 @@ Template.pageDetail.events({
         i18nKey: "pageDetail.errorMsg"
       });
     } else {
-      Meteor.call("pages/publishPage", self._id, function (error) {
+      Reaction.FlatPages.methods.publishPage.call(self._id, (error) => {
         if (error) {
           return Alerts.inline(error.reason, "danger", {
             placement: "pageManagement",

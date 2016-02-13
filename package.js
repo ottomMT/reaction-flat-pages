@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Flat pages for Reaction Commerce",
   name: "ramusus:reaction-flat-pages",
-  version: "0.1.1",
+  version: "0.1.2",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
 });
 
@@ -39,6 +39,7 @@ Package.onUse(function (api) {
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
   api.addFiles("common/collections.js");
+  api.addFiles("common/methods/pages.js", "server");
   api.addFiles("routes/pages.js");
 
   api.addFiles("client/app.js", "client");
@@ -52,7 +53,6 @@ Package.onUse(function (api) {
   api.addFiles("client/templates/settings/settings.js", "client");
 
   api.addFiles("server/register.js", "server");
-  api.addFiles("server/methods/pages.js", "server");
   api.addFiles("server/publications.js", "server");
 
   // TODO: Find another way to use this files, look https://github.com/reactioncommerce/reaction/issues/696
@@ -64,7 +64,7 @@ Package.onUse(function (api) {
   api.addFiles("server/browserPolicy.js", "server");
 
   // exports
-  api.export("ReactionPage");
+  api.export(["ReactionPage", "Reaction"]);
 });
 
 Package.onTest(function (api) {

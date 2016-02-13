@@ -43,8 +43,7 @@ ReactionPage.setPage = (currentPageId) => {
  * @return {Object|undefined} currently selected page cursor
  */
 ReactionPage.selectedPage = () => {
-  const page = ReactionCore.Collections.Pages.findOne(ReactionPage.get("pageId"));
-  return page;
+  return ReactionCore.Collections.Pages.findOne(ReactionPage.get("pageId"));
 };
 
 /**
@@ -86,7 +85,7 @@ ReactionPage.maybeDeletePage = (page) => {
   }
 
   if (confirm(confirmTitle)) {
-    return Meteor.call("pages/deletePage", pageIds, function (error, result) {
+    return Reaction.FlatPages.methods.deletePage.call({pageIds}, (error, result) => {
       let id = "page";
       if (error || !result) {
         Alerts.toast("There was an error deleting " + title, "danger", {
@@ -95,7 +94,6 @@ ReactionPage.maybeDeletePage = (page) => {
         throw new Meteor.Error("Error deleting page " + id, error);
       } else {
         ReactionPage.setPage(null);
-        //ReactionRouter.go("/");
         return Alerts.toast(`Deleted ${title}`, "info");
       }
     });

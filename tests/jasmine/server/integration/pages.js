@@ -9,7 +9,7 @@ describe("core page methods", function () {
       spyOn(Roles, "userIsInRole").and.returnValue(false);
       spyOn(ReactionCore.Collections.Pages, "insert");
       expect(function () {
-        return Meteor.call("pages/createPage");
+        return Reaction.FlatPages.methods.createPage.call();
       }).toThrow(new Meteor.Error(403, "Access Denied"));
       expect(ReactionCore.Collections.Pages.insert).not.toHaveBeenCalled();
       return done();
@@ -18,7 +18,7 @@ describe("core page methods", function () {
     it("should create new page by admin", function (done) {
       spyOn(Roles, "userIsInRole").and.returnValue(true);
       spyOn(ReactionCore.Collections.Pages, "insert").and.returnValue(1);
-      expect(Meteor.call("pages/createPage")).toEqual(1);
+      expect(Reaction.FlatPages.methods.createPage.call()).toEqual(1);
       expect(ReactionCore.Collections.Pages.insert).toHaveBeenCalled();
       return done();
     });
@@ -34,7 +34,7 @@ describe("core page methods", function () {
       spyOn(ReactionCore.Collections.Pages, "remove");
       page = Factory.create("page");
       expect(function () {
-        return Meteor.call("pages/deletePage", page._id);
+        return Reaction.FlatPages.methods.deletePage.call({pageId: page._id});
       }).toThrow(new Meteor.Error(403, "Access Denied"));
       expect(ReactionCore.Collections.Pages.remove).not.toHaveBeenCalled();
       return done();
@@ -45,7 +45,7 @@ describe("core page methods", function () {
       spyOn(Roles, "userIsInRole").and.returnValue(true);
       page = Factory.create("page");
       expect(ReactionCore.Collections.Pages.find().count()).toEqual(1);
-      expect(Meteor.call("pages/deletePage", page._id)).toBe(true);
+      expect(Reaction.FlatPages.methods.deletePage.call({pageId: page._id})).toBe(true);
       expect(ReactionCore.Collections.Pages.find().count()).toEqual(0);
       return done();
     });
@@ -61,8 +61,7 @@ describe("core page methods", function () {
       page = Factory.create("page");
       spyOn(ReactionCore.Collections.Pages, "update");
       expect(function () {
-        return Meteor.call("pages/updatePageField",
-          page._id, "title", "Updated Title");
+        return Reaction.FlatPages.methods.updatePageField.call({pageId: page._id, field: "title", value: "Updated Title"});
       }).toThrow(new Meteor.Error(403, "Access Denied"));
       expect(ReactionCore.Collections.Pages.update).not.toHaveBeenCalled();
       return done();
@@ -72,8 +71,8 @@ describe("core page methods", function () {
       let page;
       spyOn(Roles, "userIsInRole").and.returnValue(true);
       page = Factory.create("page");
-      Meteor.call("pages/updatePageField", page._id,
-        "title", "Updated Title");
+      Reaction.FlatPages.methods.updatePageField.call(
+        {pageId: page._id, field: "title", value: "Updated Title"});
       page = ReactionCore.Collections.Pages.findOne({
         _id: page._id
       });
@@ -93,7 +92,7 @@ describe("core page methods", function () {
       page = Factory.create("page");
       spyOn(ReactionCore.Collections.Pages, "update");
       expect(function () {
-        return Meteor.call("pages/publishPage", page._id);
+        return Reaction.FlatPages.methods.publishPage.call({pageId: page._id});
       }).toThrow(new Meteor.Error(403, "Access Denied"));
       expect(ReactionCore.Collections.Pages.update).not.toHaveBeenCalled();
       return done();
@@ -106,7 +105,7 @@ describe("core page methods", function () {
       page = Factory.create("page");
       isVisible = page.isVisible;
       expect(function () {
-        return Meteor.call("pages/publishPage", page._id);
+        return Reaction.FlatPages.methods.publishPage.call({pageId: page._id});
       }).not.toThrow(new Meteor.Error(403, "Access Denied"));
       page = ReactionCore.Collections.Pages.findOne(page._id);
       expect(page.isVisible).toEqual(!isVisible);
@@ -120,12 +119,12 @@ describe("core page methods", function () {
       page = Factory.create("page");
       isVisible = page.isVisible;
       expect(function () {
-        return Meteor.call("pages/publishPage", page._id);
+        return Reaction.FlatPages.methods.publishPage.call({pageId: page._id});
       }).not.toThrow(new Meteor.Error(403, "Access Denied"));
       page = ReactionCore.Collections.Pages.findOne(page._id);
       expect(page.isVisible).toEqual(!isVisible);
       expect(function () {
-        return Meteor.call("pages/publishPage", page._id);
+        return Reaction.FlatPages.methods.publishPage.call({pageId: page._id});
       }).not.toThrow(new Meteor.Error(400, "Bad Request"));
       page = ReactionCore.Collections.Pages.findOne(page._id);
       expect(page.isVisible).toEqual(isVisible);
@@ -146,7 +145,7 @@ describe("core page methods", function () {
         validate: false
       });
       expect(function () {
-        return Meteor.call("pages/publishPage", page._id);
+        return Reaction.FlatPages.methods.publishPage.call({pageId: page._id});
       }).not.toThrow(new Meteor.Error(403, "Access Denied"));
       page = ReactionCore.Collections.Pages.findOne(page._id);
       expect(page.isVisible).toEqual(isVisible);
