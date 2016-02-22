@@ -94,42 +94,45 @@ Template.pageDetailField.events({
 Template.pageDetailEdit.onRendered(function () {
   Session.delete('editing-content-savetime');
   this.autorun(function () {
-    $('.content-edit-input')
-      .trumbowyg({
-        btnsDef: {
-          image: {
-            title: 'Insert image',
-            dropdown: ['insertImage', 'upload'],
-            ico: 'insertImage'
-          }
-        },
-        btns: ['viewHTML',
-          '|', 'formatting',
-          '|', 'btnGrp-semantic',
-          '|', 'link',
-          '|', 'image',
-          '|', 'btnGrp-justify',
-          '|', 'btnGrp-lists',
-          '|', 'horizontalRule',
-          '|', 'removeformat'
-        ],
-        removeformatPasted: true,
-        autogrow: true,
-        fullscreenable: false,
-        lang: Session.get("language"),
-        uploadHandler: function (tbw, alt) {
-          for (let fileObj of Session.get('files-uploaded')) {
-            var url = fileObj.url();
-            tbw.execCmd('insertImage', url);
-            $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
-            setTimeout(function () {
-              tbw.closeModal();
-            }, 250);
-          }
+    $('.content-edit-input').trumbowyg({
+      btnsDef: {
+        image: {
+          title: 'Insert image',
+          dropdown: ['insertImage', 'upload'],
+          ico: 'insertImage'
         }
-      })
-      // if content is empty -> set space, otherwise changing content doesn't work
-      .trumbowyg('html', ReactionPage.selectedPage().content || ' ');
+      },
+      btns: ['viewHTML',
+        '|', 'formatting',
+        '|', 'btnGrp-semantic',
+        '|', 'link',
+        '|', 'image',
+        '|', 'btnGrp-justify',
+        '|', 'btnGrp-lists',
+        '|', 'horizontalRule',
+        '|', 'removeformat'
+      ],
+      removeformatPasted: true,
+      autogrow: true,
+      fullscreenable: false,
+      lang: Session.get("language"),
+      uploadHandler: function (tbw, alt) {
+        for (let fileObj of Session.get('files-uploaded')) {
+          var url = fileObj.url();
+          tbw.execCmd('insertImage', url);
+          $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
+          setTimeout(function () {
+            tbw.closeModal();
+          }, 250);
+        }
+      }
+    });
+    const content = ReactionPage.selectedPage().content;
+    if (content) {
+      $('.content-edit-input').trumbowyg('html', content);
+    } else {
+      $('.content-edit-input').trumbowyg('empty');
+    }
   });
   // TODO: move to CSS
   // changing default width

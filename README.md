@@ -12,6 +12,16 @@ Installation
 
     meteor add ramusus:reaction-flat-pages
 
+**Important** Right now Reaction Core doesn't support integration with this package out of the box. It's necessary to do 
+slight changes. I opened this [Pull Request](https://github.com/reactioncommerce/reaction/pull/805) 
+to show how to integrate it with latest development 0.12 version of Reaction Core. You can merge it to you local 
+installation. You can check what changes are necessary 
+[here](https://github.com/reactioncommerce/reaction/pull/805/files).
+
+To enable link "Flat Pages" in right-side bar, it's required to remove all shops from database. They will be
+created again by inner logic of Reaction with updated layout with this link. It will appear in the bottom of right-side bar
+on index and product tag pages.
+
 Screenshots
 -----------
 
@@ -31,8 +41,9 @@ Features
 --------
 
 * Link "Add Page" in right sidebar;
-* Reactive Page form with ability to change fields in place (Product form style);
-* Dashboard integration - all pages list, deleting, reordering (in plans) options;
+* Link "Flat Pages" with all pages in the bottom of right sidebar;
+* Reactive Page form with ability to change fields in place (Reaction product form style);
+* Dashboard integration - all pages list, delete, show, hide, reorder (in plans) options;
 * All pages lives under `/page` URL-prefix;
 * WYSIWYG content field with ability to upload multiple images at once.
 

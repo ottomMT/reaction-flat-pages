@@ -6,7 +6,7 @@ Template.flatpagesDashboardControls.events({
   "click [data-event-action=showFlatPagesOptions]": () => {
     ReactionCore.showActionView({
       label: "Flat Pages",
-      i18nKey: "flatpages.flatPages",
+      i18nKey: "admin.settings.flatPagesSettingsLabel",
       template: "flatPagesSettings"
     });
   }

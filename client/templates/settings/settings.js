@@ -1,9 +1,9 @@
 Template.flatPagesSettings.helpers({
-  pages: function () {
+  pages() {
     return ReactionCore.Collections.Pages.find({}, {sort: {position: 1, title: -1}});
   },
-  pageLink: function() {
-    return this.title || i18n.t("pageSettings.noTitle");
+  pageLink() {
+    return this.title || i18n.t("pageDetail.noTitle");
   }
 });
 
