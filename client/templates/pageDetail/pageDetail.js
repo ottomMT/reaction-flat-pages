@@ -80,33 +80,8 @@ Template.pageDetail.helpers({
  */
 
 Template.pageDetail.events({
-  "click .toggle-page-isVisible-link": function (event, template) {
-    let errorMsg = "";
-    const self = this;
-    if (!self.title) {
-      errorMsg += "Page title is required. ";
-      template.$(".title-edit-input").focus();
-    }
-    if (!self.content) {
-      errorMsg += "Page content is required. ";
-      template.$(".content-edit-input").focus();
-    }
-    if (errorMsg.length > 0) {
-      Alerts.inline(errorMsg, "danger", {
-        placement: "pageManagement",
-        i18nKey: "pageDetail.errorMsg"
-      });
-    } else {
-      Reaction.FlatPages.methods.publishPage.call(self._id, (error) => {
-        if (error) {
-          return Alerts.inline(error.reason, "danger", {
-            placement: "pageManagement",
-            id: self._id,
-            i18nKey: "pageDetail.errorMsg"
-          });
-        }
-      });
-    }
+  "click .toggle-page-isVisible-link": function () {
+    ReactionPage.publishPage(this, 'detail');
   },
   "click .delete-page-link": function () {
     ReactionPage.maybeDeletePage(this);

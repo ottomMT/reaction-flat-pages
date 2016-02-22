@@ -11,7 +11,7 @@ ReactionPage = new ReactiveDict("currentPage");
 Tracker.autorun(function () {
   ReactionRouter.watchPathChange();
   if (ReactionRouter.getParam("handle")) {
-    const pageSub = ReactionSubMan.subscribe("Page", ReactionRouter.getParam("handle"));
+    const pageSub = ReactionSubscriptions.subscribe("Page", ReactionRouter.getParam("handle"));
     if (pageSub.ready()) {
       return ReactionPage.setPage(ReactionRouter.getParam("handle"));
     }
@@ -53,49 +53,4 @@ ReactionPage.selectedPage = () => {
  */
 ReactionPage.selectedPageId = () => {
   return ReactionPage.get("pageId");
-};
-
-/**
- * maybeDeletePage
- * @summary confirm page deletion, delete, and alert
- * @todo - refactor this back into templates. this is bad.
- * @param {Object} page - page Object
- * @return {Object} - returns nothing, and alerts,happen here
- */
-ReactionPage.maybeDeletePage = (page) => {
-  let pageIds;
-  let title;
-  let confirmTitle = "Delete this page?";
-
-  if (_.isArray(page)) {
-    if (page.length === 1) {
-      title = page[0].title || "the page";
-      pageIds = [page[0]._id];
-    } else {
-      title = "the selected pages";
-      confirmTitle = "Delete selected pages?";
-
-      pageIds = _.map(page, (item) => {
-        return item._id;
-      });
-    }
-  } else {
-    title = page.title || "the page";
-    pageIds = [page._id];
-  }
-
-  if (confirm(confirmTitle)) {
-    return Reaction.FlatPages.methods.deletePage.call({pageIds}, (error, result) => {
-      let id = "page";
-      if (error || !result) {
-        Alerts.toast("There was an error deleting " + title, "danger", {
-          i18nKey: "pageDetail.pageDeleteError"
-        });
-        throw new Meteor.Error("Error deleting page " + id, error);
-      } else {
-        ReactionPage.setPage(null);
-        return Alerts.toast(`Deleted ${title}`, "info");
-      }
-    });
-  }
 };

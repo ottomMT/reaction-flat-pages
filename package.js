@@ -1,12 +1,12 @@
 Package.describe({
   summary: "Flat pages for Reaction Commerce",
   name: "ramusus:reaction-flat-pages",
-  version: "0.1.3",
+  version: "0.1.4",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR@1.2");
+  api.versionsFrom("METEOR@1.2.1");
 
   // meteor base packages
   api.use("meteor-base");
@@ -39,11 +39,10 @@ Package.onUse(function (api) {
   api.addAssets("lib/bower/trumbowyg/dist/ui/images/icons-black.png", "client");
 
   api.addFiles("common/collections.js");
-  api.addFiles("common/methods/pages.js", "server");
-  api.addFiles("routes/pages.js");
+  api.addFiles("common/methods/pages.js");
 
-  api.addFiles("client/app.js", "client");
   api.addFiles("client/helpers/pages.js", "client");
+  api.addFiles("client/helpers/globals.js", "client");
 
   api.addFiles("client/templates/pageDetail/pageDetail.html", "client");
   api.addFiles("client/templates/pageDetail/pageDetail.js", "client");
@@ -51,6 +50,8 @@ Package.onUse(function (api) {
   api.addFiles("client/templates/pageDetail/edit/edit.js", "client");
   api.addFiles("client/templates/settings/settings.html", "client");
   api.addFiles("client/templates/settings/settings.js", "client");
+  api.addFiles("client/templates/dashboard/dashboard.html", "client");
+  api.addFiles("client/templates/dashboard/dashboard.js", "client");
 
   api.addFiles("server/register.js", "server");
   api.addFiles("server/publications.js", "server");
@@ -64,7 +65,7 @@ Package.onUse(function (api) {
   api.addFiles("server/browserPolicy.js", "server");
 
   // exports
-  api.export(["ReactionPage", "Reaction"]);
+  api.export(["ReactionPage", "ReactionFlatPages"]);
 });
 
 Package.onTest(function (api) {

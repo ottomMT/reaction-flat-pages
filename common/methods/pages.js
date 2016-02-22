@@ -2,18 +2,17 @@
  * Reaction Flat Page Methods
  */
 
-Reaction = {};
-Reaction.FlatPages = {};
-Reaction.FlatPages.methods = {};
+ReactionFlatPages = {};
+ReactionFlatPages.methods = {};
 
 /**
- * Reaction.FlatPages.methods.createPage
+ * ReactionFlatPages.methods.createPage
  * @summary when we create a new page, we create it with an empty fields
  * @param {Object} page - optional page object
  * @return {String} return insert result
  */
-Reaction.FlatPages.methods.createPage = new ValidatedMethod({
-  name: 'Reaction.FlatPages.methods.createPage',
+ReactionFlatPages.methods.createPage = new ValidatedMethod({
+  name: 'ReactionFlatPages.methods.createPage',
   validate(args) {
     check(args && args.page, Match.Optional(Object));
     if (!ReactionCore.hasPermission("createPage")) {
@@ -36,13 +35,13 @@ Reaction.FlatPages.methods.createPage = new ValidatedMethod({
 });
 
 /**
- * Reaction.FlatPages.methods.deletePage
+ * ReactionFlatPages.methods.deletePage
  * @summary delete a page
  * @param {String} pageId - pageId to delete
  * @returns {Boolean} returns delete result
  */
-Reaction.FlatPages.methods.deletePage = new ValidatedMethod({
-  name: 'Reaction.FlatPages.methods.deletePage',
+ReactionFlatPages.methods.deletePage = new ValidatedMethod({
+  name: 'ReactionFlatPages.methods.deletePage',
   validate({ pageId }) {
     check(pageId, Match.OneOf(Array, String));
     // must have admin permission to delete
@@ -63,15 +62,15 @@ Reaction.FlatPages.methods.deletePage = new ValidatedMethod({
 });
 
 /**
- * Reaction.FlatPages.methods.updatePageField
+ * ReactionFlatPages.methods.updatePageField
  * @summary update single page field
  * @param {String} pageId - pageId to update
  * @param {String} field - key to update
  * @param {String} value - update property value
  * @return {String} returns update result
  */
-Reaction.FlatPages.methods.updatePageField = new ValidatedMethod({
-  name: 'Reaction.FlatPages.methods.updatePageField',
+ReactionFlatPages.methods.updatePageField = new ValidatedMethod({
+  name: 'ReactionFlatPages.methods.updatePageField',
   validate({ pageId, field, value }) {
     check(pageId, String);
     check(field, String);
@@ -94,14 +93,14 @@ Reaction.FlatPages.methods.updatePageField = new ValidatedMethod({
 });
 
 /**
- * Reaction.FlatPages.methods.publishPage
+ * ReactionFlatPages.methods.publishPage
  * @summary publish (visibility) of page
  * @todo hook into publishing flow
  * @param {String} pageId - pageId
  * @return {String} return
  */
-Reaction.FlatPages.methods.publishPage = new ValidatedMethod({
-  name: 'Reaction.FlatPages.methods.publishPage',
+ReactionFlatPages.methods.publishPage = new ValidatedMethod({
+  name: 'ReactionFlatPages.methods.publishPage',
   permission: "createPage",
   validate({ pageId }) {
     check(pageId, String);

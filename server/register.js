@@ -1,37 +1,56 @@
-/*
- * register reaction-flat-pages components as reaction packages
- */
-
 ReactionCore.registerPackage({
   label: "Flat Pages",
-  name: "flat-pages",
+  name: "reaction-flat-pages",
+  icon: "fa fa-cubes",
   autoEnable: true,
-  settings: {
-    url: ""
-  },
   registry: [{
+    route: "/page/:handle",
+    name: "page",
+    template: "pageDetail",
+    workflow: "corePageWorkflow"
+  }, {
+    route: "/pages/createPage",
+    name: "createPage",
+    label: "Add Page",
+    icon: "fa fa-file-text-o",
+    template: "pageDetail",
+    provides: "shortcut",
+    container: "addItem",
+    priority: 3,
+    permissions: [{
+      label: "Create Page",
+      permission: "createPage"
+    }]
+  }, {
     provides: "dashboard",
+    name: "flatpages",
     label: "Flat Pages",
     description: "Easily add flat pages anywhere into Reaction Commerce",
     icon: "fa fa-file-text-o",
-    cycle: 3,
-    container: "dashboard"
+    priority: 2,
+    container: "core",
   }, {
-    route: "createPage",
-    label: "Add Page",
-    icon: "fa fa-plus",
-    provides: "shortcut"
-  }, {
-    route: "dashboard/flat-pages",
-    template: "flatPagesSettings",
-    label: "Flat Pages Settings",
-    provides: "settings",
-    icon: "fa fa-cog fa-2x fa-fw",
-    container: "dashboard"
-  }],
-  permissions: [{
     label: "Flat Pages",
-    permission: "dashboard/settings",
-    group: "Shop Settings"
+    route: "/dashboard/flatpages/settings",
+    name: "flatpages/settings",
+    provides: "settings",
+    template: "flatPagesSettings"
+  }],
+  layout: [{
+    layout: "coreLayout",
+    workflow: "corePageWorkflow",
+    collection: "Pages",
+    theme: "default",
+    enabled: true,
+    structure: {
+      template: "pageDetail",
+      layoutHeader: "layoutHeader",
+      layoutFooter: "",
+      notFound: "pageNotFound",
+      dashboardHeader: "",
+      dashboardControls: "flatpagesDashboardControls",
+      dashboardHeaderControls: "",
+      adminControlsFooter: "adminControlsFooter"
+    }
   }]
 });

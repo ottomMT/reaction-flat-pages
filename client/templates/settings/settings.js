@@ -3,7 +3,7 @@ Template.flatPagesSettings.helpers({
     return ReactionCore.Collections.Pages.find({}, {sort: {position: 1, title: -1}});
   },
   pageLink: function() {
-    return this.title || i18n.t("pageSettings.noTitle", "No title");
+    return this.title || i18n.t("pageSettings.noTitle");
   }
 });
 
@@ -15,6 +15,9 @@ Template.flatPagesSettings.onCreated(function () {
 });
 
 Template.flatPagesSettings.events({
+  "click [data-event-action=publishPage]": function () {
+    ReactionPage.publishPage(this, 'settings');
+  },
   "click [data-event-action=deletePage]": function () {
     ReactionPage.maybeDeletePage(this);
   }

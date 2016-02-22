@@ -3,18 +3,33 @@
     {{#if Template.subscriptionsReady}}
       {{#each pages}}
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading panel-heading-flex">
             <div class="panel-title">
-              <a href="{{pathFor 'page' handle}}">{{pageLink}}</a>
+              <a href="{{pathFor 'page' handle=handle}}">{{pageLink}}</a>
+            </div>
+            <div class="panel-controls">
               {{#if hasPermission "createPage"}}
+                <button
+                        type="button"
+                        class="btn btn-default"
+                        data-toggle="tooltip"
+                        title="{{i18n 'pageDetailEdit.publish' 'Publish Page'}}"
+                        data-original-title="{{i18n 'pageDetailEdit.publish' 'Publish Page'}}"
+                        data-event-action="publishPage">
+                  {{#if isVisible}}
+                    <span class="fa fa-eye fa-lg"></span>
+                  {{else}}
+                    <span class="fa fa-eye-slash fa-lg"></span>
+                  {{/if}}
+                </button>
                 <button
                         type="button"
                         class="btn btn-danger"
                         data-toggle="tooltip"
-                        title="{{i18n 'pageDetailEdit.deletePage' 'Delete Page'}}"
-                        data-original-title="{{i18n 'pageDetailEdit.deletePage' 'Delete Page'}}"
+                        title="{{i18n 'pageDetailEdit.delete' 'Delete Page'}}"
+                        data-original-title="{{i18n 'pageDetailEdit.delete' 'Delete Page'}}"
                         data-event-action="deletePage">
-                    <span class="fa fa-trash-o fa-lg"></span>
+                  <span class="fa fa-trash-o fa-lg"></span>
                 </button>
               {{/if}}
             </div>
