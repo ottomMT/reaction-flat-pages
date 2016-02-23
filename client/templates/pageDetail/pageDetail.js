@@ -16,7 +16,7 @@ function uploadHandler(event) {
     "metadata.pageId": pageId
   }).count();
 
-  Session.set('files-uploaded', []);
+  Session.set("files-uploaded", []);
   return FS.Utility.eachFile(event, function (file) {
     let fileObj;
     fileObj = new FS.File(file);
@@ -28,14 +28,14 @@ function uploadHandler(event) {
 
     // progress bar
     let prefix = "trumbowyg-";
-    if ($('.' + prefix + 'progress').length === 0) {
-      $('.' + prefix + 'modal-title').after(
-        $('<div/>').attr('class', prefix + 'progress').append(
-          $('<div/>').attr('class', prefix + 'progress-bar').css('width', 0)
+    if ($("." + prefix + "progress").length === 0) {
+      $("." + prefix + "modal-title").after(
+        $("<div/>").attr("class", prefix + "progress").append(
+          $("<div/>").attr("class", prefix + "progress-bar").css("width", 0)
         )
       );
     } else {
-      $('.' + prefix + 'progress-bar').css('width', 0);
+      $("." + prefix + "progress-bar").css("width", 0);
     }
 
     Media.insert(fileObj, function (err, fileObj) {
@@ -43,17 +43,17 @@ function uploadHandler(event) {
       // progress bar
       let myInterval = setInterval(function () {
         let progress = fileObj.uploadProgress();
-        $('.' + prefix + 'progress-bar').stop().animate({
-          width: progress + '%'
+        $("." + prefix + "progress-bar").stop().animate({
+          width: progress + "%"
         });
         if(progress === 100) {
           clearInterval(myInterval);
         }
       }, 1);
 
-      let filesUploaded = Session.get('files-uploaded');
+      let filesUploaded = Session.get("files-uploaded");
       filesUploaded.push(fileObj);
-      Session.set('files-uploaded', filesUploaded);
+      Session.set("files-uploaded", filesUploaded);
     });
     return count++;
   });
@@ -81,7 +81,7 @@ Template.pageDetail.helpers({
 
 Template.pageDetail.events({
   "click .toggle-page-isVisible-link": function () {
-    ReactionPage.publishPage(this, 'detail');
+    ReactionPage.publishPage(this, "detail");
   },
   "click .delete-page-link": function () {
     ReactionPage.maybeDeletePage(this);

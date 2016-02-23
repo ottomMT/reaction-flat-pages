@@ -4,7 +4,7 @@
  * @param {Array} shops - array of shopId to retrieve page from.
  * @return {Object} return page cursor
  */
-Meteor.publish('Pages', function (pageScrollLimit, shops) {
+Meteor.publish("Pages", function (pageScrollLimit, shops) {
   check(pageScrollLimit, Match.OneOf(null, undefined, Number));
   check(shops, Match.Optional(Array));
 

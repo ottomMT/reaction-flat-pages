@@ -5,7 +5,7 @@
         <div class="panel panel-default">
           <div class="panel-heading panel-heading-flex">
             <div class="panel-title">
-              <a href="{{pathFor 'page' handle=handle}}">{{pageLink}}</a>
+              <a href="{{pathFor "page" handle=handle}}">{{pageLink}}</a>
             </div>
             <div class="panel-controls">
               {{#if hasPermission "createPage"}}
@@ -13,8 +13,8 @@
                         type="button"
                         class="btn btn-default"
                         data-toggle="tooltip"
-                        title="{{i18n 'pageDetailEdit.publish' 'Publish Page'}}"
-                        data-original-title="{{i18n 'pageDetailEdit.publish' 'Publish Page'}}"
+                        title="{{i18n "pageDetailEdit.publish" "Publish Page"}}"
+                        data-original-title="{{i18n "pageDetailEdit.publish" "Publish Page"}}"
                         data-event-action="publishPage">
                   {{#if isVisible}}
                     <span class="fa fa-eye fa-lg"></span>
@@ -26,8 +26,8 @@
                         type="button"
                         class="btn btn-danger"
                         data-toggle="tooltip"
-                        title="{{i18n 'pageDetailEdit.delete' 'Delete Page'}}"
-                        data-original-title="{{i18n 'pageDetailEdit.delete' 'Delete Page'}}"
+                        title="{{i18n "pageDetailEdit.delete" "Delete Page"}}"
+                        data-original-title="{{i18n "pageDetailEdit.delete" "Delete Page"}}"
                         data-event-action="deletePage">
                   <span class="fa fa-trash-o fa-lg"></span>
                 </button>

@@ -16,7 +16,7 @@ Template.flatPagesSettings.onCreated(function () {
 
 Template.flatPagesSettings.events({
   "click [data-event-action=publishPage]": function () {
-    ReactionPage.publishPage(this, 'settings');
+    ReactionPage.publishPage(this, "settings");
   },
   "click [data-event-action=deletePage]": function () {
     ReactionPage.maybeDeletePage(this);

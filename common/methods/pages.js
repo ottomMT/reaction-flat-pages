@@ -12,7 +12,7 @@ ReactionFlatPages.methods = {};
  * @return {String} return insert result
  */
 ReactionFlatPages.methods.createPage = new ValidatedMethod({
-  name: 'ReactionFlatPages.methods.createPage',
+  name: "ReactionFlatPages.methods.createPage",
   validate(args) {
     check(args && args.page, Match.Optional(Object));
     if (!ReactionCore.hasPermission("createPage")) {
@@ -41,7 +41,7 @@ ReactionFlatPages.methods.createPage = new ValidatedMethod({
  * @returns {Boolean} returns delete result
  */
 ReactionFlatPages.methods.deletePage = new ValidatedMethod({
-  name: 'ReactionFlatPages.methods.deletePage',
+  name: "ReactionFlatPages.methods.deletePage",
   validate({ pageId }) {
     check(pageId, Match.OneOf(Array, String));
     // must have admin permission to delete
@@ -70,7 +70,7 @@ ReactionFlatPages.methods.deletePage = new ValidatedMethod({
  * @return {String} returns update result
  */
 ReactionFlatPages.methods.updatePageField = new ValidatedMethod({
-  name: 'ReactionFlatPages.methods.updatePageField',
+  name: "ReactionFlatPages.methods.updatePageField",
   validate({ pageId, field, value }) {
     check(pageId, String);
     check(field, String);
@@ -80,7 +80,7 @@ ReactionFlatPages.methods.updatePageField = new ValidatedMethod({
     }
   },
   run({ pageId, field, value }) {
-    if(field === 'handle' && ReactionCore.Collections.Pages.findOne({handle: value})) {
+    if(field === "handle" && ReactionCore.Collections.Pages.findOne({handle: value})) {
       throw new Meteor.Error(403, "The page with this handle already exists");
     }
     const stringValue = EJSON.stringify(value);
@@ -100,7 +100,7 @@ ReactionFlatPages.methods.updatePageField = new ValidatedMethod({
  * @return {String} return
  */
 ReactionFlatPages.methods.publishPage = new ValidatedMethod({
-  name: 'ReactionFlatPages.methods.publishPage',
+  name: "ReactionFlatPages.methods.publishPage",
   permission: "createPage",
   validate({ pageId }) {
     check(pageId, String);

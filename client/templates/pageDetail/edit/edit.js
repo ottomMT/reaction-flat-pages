@@ -24,7 +24,7 @@ Template.pageDetailEdit.events({
     const pageId = ReactionPage.selectedPageId();
     const value = $(event.currentTarget).val();
 
-    if (this.field === 'content' && event.type.indexOf('change') != -1) {
+    if (this.field === "content" && event.type.indexOf("change") != -1) {
       // save every 5 sec during content changing in textarea field
       const key = `editing-${this.field}-savetime`;
       const now = Number(new Date());
@@ -37,7 +37,7 @@ Template.pageDetailEdit.events({
       if (!prev) {
         return
       }
-    } else if (this.field === 'content' && event.type == 'tbwblur') {
+    } else if (this.field === "content" && event.type == "tbwblur") {
       // on loosing focus, check and delete all Media, which are not in the current content
       ReactionCore.Collections.Media.find({"metadata.pageId": pageId}).forEach(function(media) {
         if (value.indexOf(media.url()) == -1) {
@@ -56,7 +56,7 @@ Template.pageDetailEdit.events({
           });
         }
         // go to new url of page
-        if (self.field === 'handle') {
+        if (self.field === "handle") {
           return ReactionRouter.setParams({handle: value});
           //ReactionRouter.go("/page/" + value);
         }
@@ -92,35 +92,35 @@ Template.pageDetailField.events({
  */
 
 Template.pageDetailEdit.onRendered(function () {
-  Session.delete('editing-content-savetime');
+  Session.delete("editing-content-savetime");
   this.autorun(function () {
-    $('.content-edit-input').trumbowyg({
+    $(".content-edit-input").trumbowyg({
       btnsDef: {
         image: {
-          title: 'Insert image',
-          dropdown: ['insertImage', 'upload'],
-          ico: 'insertImage'
+          title: "Insert image",
+          dropdown: ["insertImage", "upload"],
+          ico: "insertImage"
         }
       },
-      btns: ['viewHTML',
-        '|', 'formatting',
-        '|', 'btnGrp-semantic',
-        '|', 'link',
-        '|', 'image',
-        '|', 'btnGrp-justify',
-        '|', 'btnGrp-lists',
-        '|', 'horizontalRule',
-        '|', 'removeformat'
+      btns: ["viewHTML",
+        "|", "formatting",
+        "|", "btnGrp-semantic",
+        "|", "link",
+        "|", "image",
+        "|", "btnGrp-justify",
+        "|", "btnGrp-lists",
+        "|", "horizontalRule",
+        "|", "removeformat"
       ],
       removeformatPasted: true,
       autogrow: true,
       fullscreenable: false,
       lang: Session.get("language"),
       uploadHandler: function (tbw, alt) {
-        for (let fileObj of Session.get('files-uploaded')) {
+        for (let fileObj of Session.get("files-uploaded")) {
           var url = fileObj.url();
-          tbw.execCmd('insertImage', url);
-          $('img[src="' + url + '"]:not([alt])', tbw.$box).attr('alt', alt);
+          tbw.execCmd("insertImage", url);
+          $(`img[src="${url}"]:not([alt])`, tbw.$box).attr("alt", alt);
           setTimeout(function () {
             tbw.closeModal();
           }, 250);
@@ -129,12 +129,12 @@ Template.pageDetailEdit.onRendered(function () {
     });
     const content = ReactionPage.selectedPage().content;
     if (content) {
-      $('.content-edit-input').trumbowyg('html', content);
+      $(".content-edit-input").trumbowyg("html", content);
     } else {
-      $('.content-edit-input').trumbowyg('empty');
+      $(".content-edit-input").trumbowyg("empty");
     }
   });
   // TODO: move to CSS
   // changing default width
-  $('.trumbowyg-box').css('width', '100%');
+  $(".trumbowyg-box").css("width", "100%");
 });

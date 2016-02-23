@@ -10,9 +10,9 @@ ReactionPage.publishPage = (pageOrArray, alertPlacement) => {
     let errors = [];
     let alertSuccess = (title, code) => Alerts.toast(title, code, {autoHide: true, dismissable: false});
     let alertError;
-    if (alertPlacement === 'detail') {
+    if (alertPlacement === "detail") {
       alertError = (title, code) => Alerts.inline(title, code, {placement: "pageManagement"});
-    } else if (alertPlacement === 'settings') {
+    } else if (alertPlacement === "settings") {
       alertError = alertSuccess;
     }
     if (!page.title) {
