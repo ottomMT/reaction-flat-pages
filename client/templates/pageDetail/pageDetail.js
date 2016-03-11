@@ -1,14 +1,10 @@
-/**
- * productImageGallery helpers
- */
-
-let Media = ReactionCore.Collections.Media;
 
 /**
  * uploadHandler method
  */
 
 function uploadHandler(event) {
+  const Media = ReactionCore.Collections.Media;
   const pageId = ReactionPage.selectedPageId();
   const shopId = ReactionPage.selectedPage().shopId || ReactionCore.getShopId();
   const userId = Meteor.userId();
@@ -38,11 +34,10 @@ function uploadHandler(event) {
       $("." + prefix + "progress-bar").css("width", 0);
     }
 
-    Media.insert(fileObj, function (err, fileObj) {
-
+    Media.insert(fileObj, function (err, fileUploaded) {
       // progress bar
       let myInterval = setInterval(function () {
-        let progress = fileObj.uploadProgress();
+        let progress = fileUploaded.uploadProgress();
         $("." + prefix + "progress-bar").stop().animate({
           width: progress + "%"
         });
@@ -52,7 +47,7 @@ function uploadHandler(event) {
       }, 1);
 
       let filesUploaded = Session.get("files-uploaded");
-      filesUploaded.push(fileObj);
+      filesUploaded.push(fileUploaded);
       Session.set("files-uploaded", filesUploaded);
     });
     return count++;

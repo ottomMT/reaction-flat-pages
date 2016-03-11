@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Flat pages for Reaction Commerce",
   name: "ramusus:reaction-flat-pages",
-  version: "0.1.4",
+  version: "0.1.5",
   git: "https://github.com/ramusus/reaction-flat-pages.git"
 });
 
@@ -50,8 +50,6 @@ Package.onUse(function (api) {
   api.addFiles("client/templates/pageDetail/edit/edit.js", "client");
   api.addFiles("client/templates/settings/settings.html", "client");
   api.addFiles("client/templates/settings/settings.js", "client");
-  api.addFiles("client/templates/dashboard/dashboard.html", "client");
-  api.addFiles("client/templates/dashboard/dashboard.js", "client");
 
   api.addFiles("server/register.js", "server");
   api.addFiles("server/publications.js", "server");

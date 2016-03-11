@@ -22,20 +22,10 @@ To enable link "Flat Pages" in right-side bar, it's required to remove all shops
 created again by inner logic of Reaction with updated layout with this link. It will appear in the bottom of right-side bar
 on index and product tag pages.
 
-Screenshots
------------
+Screencast
+----------
 
-Page:
-
-![Page](https://s3.amazonaws.com/f.cl.ly/items/1L000k2E3L2m0U2T2W30/Image%202016-01-25%20at%205.15.53%20PM.png?v=8bc0fc05)
-
-Page Form:
-
-![Page Form](https://s3.amazonaws.com/f.cl.ly/items/2s2q213o0L3V2G310n47/Image%202016-01-25%20at%205.17.37%20PM.png?v=fb84adbe)
-
-Dashboard Flat Pages settings 
-
-![Page Form](https://s3.amazonaws.com/f.cl.ly/items/0e3S292v2r250u3N422v/Image%202016-01-25%20at%205.14.39%20PM.png?v=c602fb89)
+![Page](https://s3.amazonaws.com/f.cl.ly/items/160r1h2F162d2Y0J3L0Z/Screen%20Recording%202016-03-11%20at%2005.38%20PM.gif?v=1c4a217a)
 
 Features
 --------

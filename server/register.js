@@ -3,6 +3,7 @@ ReactionCore.registerPackage({
   name: "reaction-flat-pages",
   icon: "fa fa-cubes",
   autoEnable: true,
+  settings: {},
   registry: [{
     route: "/page/:handle",
     name: "page",
@@ -16,25 +17,26 @@ ReactionCore.registerPackage({
     template: "pageDetail",
     provides: "shortcut",
     container: "addItem",
-    priority: 3,
+    priority: 2,
     permissions: [{
       label: "Create Page",
       permission: "createPage"
     }]
   }, {
     provides: "dashboard",
-    name: "flatpages",
+    name: "reaction-flat-pages",
     label: "Flat Pages",
     description: "Easily add flat pages anywhere into Reaction Commerce",
     icon: "fa fa-file-text-o",
     priority: 2,
     container: "core",
   }, {
-    label: "Flat Pages",
-    route: "/dashboard/flatpages/settings",
-    name: "flatpages/settings",
     provides: "settings",
-    template: "flatPagesSettings"
+    template: "flatPagesSettings",
+    label: "Flat Pages",
+    icon: "fa fa-file-text-o",
+    workflow: "corePageWorkflow",
+    container: "page",
   }],
   layout: [{
     layout: "coreLayout",
@@ -48,7 +50,7 @@ ReactionCore.registerPackage({
       layoutFooter: "",
       notFound: "pageNotFound",
       dashboardHeader: "",
-      dashboardControls: "flatpagesDashboardControls",
+      dashboardControls: "dashboardControls",
       dashboardHeaderControls: "",
       adminControlsFooter: "adminControlsFooter"
     }

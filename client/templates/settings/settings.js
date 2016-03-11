@@ -3,7 +3,7 @@ Template.flatPagesSettings.helpers({
     return ReactionCore.Collections.Pages.find({}, {sort: {position: 1, title: -1}});
   },
   pageLink() {
-    return this.title || i18n.t("pageDetail.noTitle");
+    return this.title || i18next.t("pageDetail.noTitle");
   }
 });
 

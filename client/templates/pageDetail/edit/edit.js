@@ -6,10 +6,10 @@ Template.pageDetailEdit.helpers({
   i18nPlaceholder: function () {
     i18nextDep.depend();
     const i18nKey = `pageDetailEdit.${this.field}`;
-    if (i18n.t(i18nKey) === i18nKey) {
+    if (i18next.t(i18nKey) === i18nKey) {
       ReactionCore.Log.info(`returning empty placeholder pageDetailEdit: ${i18nKey} no i18n key found.`);
     } else {
-      return i18n.t(i18nKey);
+      return i18next.t(i18nKey);
     }
   }
 });

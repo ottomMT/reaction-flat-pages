@@ -29,10 +29,10 @@ ReactionPage.publishPage = (pageOrArray, alertPlacement) => {
           alertError(error.reason, "error");
         } else if (result === true) {
           // TOOD: use sprintf module for i18n strings
-          alertSuccess(page.title + " " + i18n.t("pageDetail.publishPageVisible"), "success");
+          alertSuccess(page.title + " " + i18next.t("pageDetail.publishPageVisible"), "success");
         } else {
           // TOOD: use sprintf module for i18n strings
-          alertSuccess(page.title + " " + i18n.t("pageDetail.publishPageHidden"), "warning");
+          alertSuccess(page.title + " " + i18next.t("pageDetail.publishPageHidden"), "warning");
         }
       });
     }
@@ -64,7 +64,7 @@ ReactionPage.maybeDeletePage = (pageOrArray) => {
         Alerts.toast(`There was an error deleting ${title}`, "error");
         throw new Meteor.Error(`Error deleting page ${title}`, error);
       } else {
-        Alerts.toast(i18n.t("productDetail.deletedAlert") + " " + title, "info");
+        Alerts.toast(i18next.t("productDetail.deletedAlert") + " " + title, "info");
       }
     });
   }
